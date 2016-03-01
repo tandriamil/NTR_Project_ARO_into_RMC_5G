@@ -1,0 +1,8 @@
+import java.util.PriorityQueue;
+
+
+public class User {
+	private boolean near;
+	private AccessPoint accessPoint;
+	private PriorityQueue<Paquet> buffer; 
+}

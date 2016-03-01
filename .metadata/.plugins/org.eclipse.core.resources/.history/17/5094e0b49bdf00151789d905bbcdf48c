@@ -17,12 +17,5 @@ public class User {
 		buffer.add(packet);
 	}
 	
-	public Paquet getCurrentPacket() {
-		return buffer.peek();
-	}
 	
-	public void packetTerminated(int time) {
-		getCurrentPacket().setEndSend(time);
-		buffer.remove();
-	}
 }

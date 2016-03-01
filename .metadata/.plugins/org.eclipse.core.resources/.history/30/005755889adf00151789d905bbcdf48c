@@ -1,0 +1,17 @@
+import java.util.PriorityQueue;
+
+
+public class User {
+	private boolean near;
+	private AccessPoint accessPoint;
+	private PriorityQueue<Paquet> buffer;
+	
+	public User(boolean near) {
+		this.near = near;
+	}
+	
+	public void createPacket() {
+		Paquet packet = new Paquet();
+		buffer.add(packet);
+	}
+}
