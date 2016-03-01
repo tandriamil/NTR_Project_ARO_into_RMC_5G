@@ -13,7 +13,7 @@ public class User {
 	}
 	
 	public void createPacket() {
-		Packet packet = new Packet(this);
+		Packet packet = new Packet(this, accessPoint.getTime());
 		buffer.add(packet);
 	}
 	
@@ -21,8 +21,8 @@ public class User {
 		return buffer.peek();
 	}
 	
-	public void packetTerminated(int time) {
-		getCurrentPacket().setEndSend(time);
+	public void packetTerminated() {
+		getCurrentPacket().setEndSend(accessPoint.getTime());
 		buffer.remove();
 	}
 }

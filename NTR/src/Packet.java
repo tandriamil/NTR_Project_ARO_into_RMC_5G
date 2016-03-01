@@ -6,11 +6,11 @@ public class Packet {
     private int nbBitsLeft;
     private User user;
 
-    public Packet(User user){
-    	this.creation = 0;
+    public Packet(User user, int time){
+    	this.creation = time;
     	this.beginSend = 0;
     	this.endSend = 0;
-    	this.nbBitsLeft = 0;
+    	this.nbBitsLeft = 100;
     	this.user = user;
     }
 
@@ -18,7 +18,7 @@ public class Packet {
     	return this.creation;
     }
 
-    public int getBaginSend(){
+    public int getBeginSend(){
     	return this.beginSend;
     }
 
@@ -38,7 +38,7 @@ public class Packet {
     	this.creation = c;
     }
 
-    public void setBaginSend(int b){
+    public void setBeginSend(int b){
     	this.beginSend = b;
     }
 

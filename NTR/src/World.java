@@ -21,7 +21,7 @@ public class World {
 		aps = new ArrayList<AccessPoint>();
 
 		// Add access points to the list
-		aps.add(1, new AccessPoint());
+		aps.add(1, new AccessPoint(this));
 		/*if (!)) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
