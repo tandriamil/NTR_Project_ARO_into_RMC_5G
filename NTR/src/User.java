@@ -13,8 +13,10 @@ public class User {
 	}
 	
 	public void createPacket() {
-		Packet packet = new Packet(this, accessPoint.getTime());
-		buffer.add(packet);
+		if((int)(Math.random() * 1000)%2 == 0){
+			Packet packet = new Packet(this, accessPoint.getTime());
+			buffer.add(packet);
+		}
 	}
 	
 	public Packet getCurrentPacket() {
