@@ -1,6 +1,0 @@
-
-public class User {
-	private boolean near;
-	private AccessPoint accessPoint;
-	
-}
