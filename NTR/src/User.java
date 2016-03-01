@@ -4,20 +4,20 @@ import java.util.PriorityQueue;
 public class User {
 	private boolean near;
 	private AccessPoint accessPoint;
-	private PriorityQueue<Paquet> buffer;
+	private PriorityQueue<Packet> buffer;
 	
 	public User(AccessPoint accessPoint, boolean near) {
 		this.accessPoint = accessPoint;
 		this.near = near;
-		buffer = new PriorityQueue<Paquet>();
+		buffer = new PriorityQueue<Packet>();
 	}
 	
 	public void createPacket() {
-		Paquet packet = new Paquet(this);
+		Packet packet = new Packet(this);
 		buffer.add(packet);
 	}
 	
-	public Paquet getCurrentPacket() {
+	public Packet getCurrentPacket() {
 		return buffer.peek();
 	}
 	

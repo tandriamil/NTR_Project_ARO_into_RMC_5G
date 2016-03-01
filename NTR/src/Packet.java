@@ -1,20 +1,12 @@
 
-public class Paquet {
+public class Packet {
     private int creation;
     private int beginSend;
     private int endSend;
     private int nbBitsLeft;
     private User user;
 
-    public Paquet(){
-    	this.creation = 0;
-    	this.beginSend = 0;
-    	this.endSend = 0;
-    	this.nbBitsLeft = 0;
-    	this.user = new User();
-    }
-
-    public Paquet(User user){
+    public Packet(User user){
     	this.creation = 0;
     	this.beginSend = 0;
     	this.endSend = 0;

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class for the world in which we'll simulate the cells
  */
@@ -18,7 +21,8 @@ public class World {
 		aps = new ArrayList<AccessPoint>();
 
 		// Add access points to the list
-		if (!aps.add(1, new AccessPoint())) {
+		aps.add(1, new AccessPoint());
+		/*if (!)) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}
@@ -26,7 +30,7 @@ public class World {
 		if (!aps.add(1, new AccessPoint())) {
 			System.err.println("[ERROR] World: Can't add the access point number 2 to the list");
 			System.exit(-1);
-		}
+		}*/
 	}
 
 
