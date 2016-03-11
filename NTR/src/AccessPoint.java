@@ -27,4 +27,29 @@ public class AccessPoint {
 			it.next().createPacket();
 		}
 	}
+
+
+	/**
+	 * Compute the next state of the access point and its users
+	 */
+	public void nextState() {
+
+		// TODO
+	}
+
+
+	/**
+	 * Initialize the access point
+	 *
+	 * @param nbUsers The number of users for this access point
+	 */
+	public void init(int nbUsers) {
+
+		// First, clear the list
+		users.clear();
+
+		// Add the correct number of users
+		// The modulo is to put half of the users as near and the other half as far
+		for (int i = 0; i < nbUsers; ++i) users.add(new User(this, (i%2 == 0)));
+	}
 }
