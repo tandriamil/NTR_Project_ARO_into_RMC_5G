@@ -5,7 +5,7 @@ public class User {
 	private boolean near;
 	private AccessPoint accessPoint;
 	private PriorityQueue<Packet> buffer;
-	
+
 	public User(AccessPoint accessPoint, boolean near) {
 		this.accessPoint = accessPoint;
 		this.near = near;
