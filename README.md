@@ -1,1 +1,0 @@
-# NTR_Project_ARO_into_RMC_5G
