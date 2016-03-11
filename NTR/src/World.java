@@ -8,6 +8,7 @@ public class World {
 
 	// Attributes
 	private int time;
+	private int nb_access_points;
 	private List<AccessPoint> aps;
 
 
@@ -18,19 +19,8 @@ public class World {
 
 		// Initialize the attributes
 		time = 0;
+		nb_access_points = 0;
 		aps = new ArrayList<AccessPoint>();
-
-		// Add access points to the list
-		aps.add(1, new AccessPoint(this));
-		/*if (!)) {
-			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
-			System.exit(-1);
-		}
-
-		if (!aps.add(1, new AccessPoint())) {
-			System.err.println("[ERROR] World: Can't add the access point number 2 to the list");
-			System.exit(-1);
-		}*/
 	}
 
 
@@ -45,8 +35,36 @@ public class World {
 
 
 	/**
+	 * Accesor for the number of access points
+	 *
+	 * @return The current number of access points
+	 */
+	public int getNbAccessPoints() {
+		return nb_access_points;
+	}
+
+
+	/**
+	 * Method to add access points
+	 *
+	 * @return true if everything is right
+	 */
+	public boolean addAccessPoint() {
+
+		// Adds the access point
+		aps.add(new AccessPoint(this));
+
+		// Increment the number of nb_access_points
+		++nb_access_points;
+
+		// Check value returned
+		return (getAccessPoint(nb_access_points-1) != null);
+	}
+
+
+	/**
 	 * Accesor for the access points
-	 * Care, the indexes begin to 1
+	 * Begins to 0
 	 *
 	 * @param index The index of the wanted access point
 	 *
