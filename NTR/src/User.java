@@ -51,6 +51,10 @@ public class User {
 		debitCurrent = 2*(int)(Math.random()*((debitMoy*2)/2+1));
 	}
 
+	public int getDebitCurrent(){
+		return this.debitCurrent;
+	}
+
 	public int getSNR() {
 		return 0;
 	}
