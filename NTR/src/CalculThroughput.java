@@ -23,6 +23,15 @@ public class CalculThroughput implements Calculation{
 		for(int i = 0; i < world.getNbAccessPoints(); ++i){
 			
 			AccessPoint a = world.getAccessPoint(i);
+            List<UR> ur = a.getUr();
+            Iterator<UR> it = ur.Iterator();
+            while(it.hasNaxt){
+                 UR ur_current = it.next();
+                 if(){
+                    
+                 }       
+            }
+
 		}
 	
 	}

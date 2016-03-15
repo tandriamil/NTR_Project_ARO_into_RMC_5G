@@ -35,8 +35,10 @@ public class AccessPoint {
 	public int getTime() {
 		return world.getTime();
 	}
-
-
+    
+    public List<UR> getUr(){
+    	return this.ur;
+    }
 	/**
 	 * Ask all clients to send packet
 	 */
