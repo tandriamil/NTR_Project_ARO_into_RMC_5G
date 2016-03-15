@@ -6,13 +6,11 @@ public class AccessPoint {
 	private UR ur;
 	private List<User> users;
 	private World world;
-	private int nb_Paket;
 	
 	public AccessPoint(World world) {
 		ur = new UR(this);
 		users = new ArrayList<User>();
 		this.world = world;
-		this.nb_Paket = 0;
 	}
 	
 	public int getTime() {
