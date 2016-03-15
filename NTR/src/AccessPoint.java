@@ -3,20 +3,39 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AccessPoint {
+
+	// Constants
+	public static final int RR_ALLOCATION_ALGORITHM = 1;
+	public static final int MAX_SNR_ALLOCATION_ALGORITHM = 2;
+	
+	// Prameters
 	private UR ur;
 	private List<User> users;
 	private World world;
-	
-	public AccessPoint(World world) {
+	private int nb_Paket;
+	private int res_alloc_alg;  // Check world constants
+
+
+	/**
+	 * Constructor for the access point
+	 *
+	 * @param world The world where this AP exists
+	 * @param ressourceAllocationAlgorithm The ressource allocation algorithm to use
+	 */
+	public AccessPoint(World world, int ressourceAllocationAlgorithm) {
 		ur = new UR(this);
 		users = new ArrayList<User>();
 		this.world = world;
+		this.nb_Paket = 0;
+		this.res_alloc_alg = ressourceAllocationAlgorithm;
 	}
-	
+
+
 	public int getTime() {
 		return world.getTime();
 	}
-	
+
+
 	/**
 	 * Ask all clients to send packet
 	 */
@@ -50,6 +69,6 @@ public class AccessPoint {
 
 		// Add the correct number of users
 		// The modulo is to put half of the users as near and the other half as far
-		for (int i = 0; i < nbUsers; ++i) users.add(new User(this, (i%2 == 0)));
+		for (int i = 0; i < nbUsers; ++i) users.add(new User(i, this, (i%2 == 0)));
 	}
 }
