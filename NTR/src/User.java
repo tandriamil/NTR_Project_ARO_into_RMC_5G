@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Deque;
+import java.util.Random;
 
 
 public class User {
@@ -7,6 +8,7 @@ public class User {
 	private boolean near;
 	private AccessPoint accessPoint;
 	private Deque<Packet> buffer;
+	private Random numberGenerator;
 	private int debitMoy;
 	private int debitCurrent;
 	
@@ -21,10 +23,13 @@ public class User {
 		else {
 			debitMoy = 3;
 		}
+
+		this.numberGenerator = new Random();
 	}
 	
 	public void createPacket() {
-		if((int)(Math.random() * 1000)%2 == 0){
+
+		if(this.numberGenerator.nextInt()%2 == 0){
 			Packet packet = new Packet(this, accessPoint.getTime());
 			buffer.add(packet);
 		}
@@ -62,5 +67,10 @@ public class User {
 
 	public int getId() {
 		return this.id;
+	}
+
+	public void seedNumberGenerator() {
+		// Set the seed for the random number generator
+		this.numberGenerator.setSeed(System.currentTimeMillis());
 	}
 }

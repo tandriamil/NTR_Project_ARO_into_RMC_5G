@@ -80,7 +80,10 @@ public class AccessPoint {
 
 		// Create a packet for each user
 		// This function randomly create packets, not always
-		for (User u : this.users) u.createPacket();
+		for (User u : this.users) {
+			u.seedNumberGenerator();
+			u.createPacket();
+		}
 
 		// Get the new UR allocation
 		this.ur = alg.allocateUR(this.users, this.ur);
@@ -92,7 +95,7 @@ public class AccessPoint {
 	 */
 	public void displayUR() {
 		for (UR u : this.ur) {
-			System.out.println("[" + u.getId() + "] = User n°" + ((u.getUser() != null) ? u.getUser().getId() : "NULL"));
+			System.out.println("\t[" + u.getId() + "] = User n°" + ((u.getUser() != null) ? u.getUser().getId() : "NULL"));
 		}
 	}
 
