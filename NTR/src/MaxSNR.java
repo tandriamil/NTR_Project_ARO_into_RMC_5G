@@ -12,8 +12,10 @@ public class MaxSNR implements Algorithm {
 			ur = it_ur.next();
 			user = getUserWithMaxSNR(users);
 
-			ur.affectURToUser(user);
-			user.checkPacket();
+			if(user != null){
+				ur.affectURToUser(user);
+				user.checkPacket();
+			}
 		}
 
 		return urs;
