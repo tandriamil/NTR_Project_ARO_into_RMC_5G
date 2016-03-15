@@ -7,7 +7,7 @@ import java.util.List;
 public class World {
 
 	// Constants
-	public static final int MAX_TIME = 200000;
+	public static final int MAX_TIME = 10000;
 
 	// Attributes
 	private int time;
@@ -111,6 +111,7 @@ public class World {
 
 			// Reinitialize the state of the access point
 			ap.init(nbUsers);
+			ap.displayUR();
 
 			// Loop on the time
 			while (time < MAX_TIME) {

@@ -1,42 +1,31 @@
 import java.util.List;
 import java.util.Iterator;
 
-public class RoundRobin implements Algorithm{
+public class RoundRobin implements Algorithm {
 
-	private static final int MAX_TIME = 100;
-
-	private List<User> users;
-	private List<UR> ur;
-
-	public RoundRobin(List<User> users, List<UR> ur) {
-		this.users = users;
-		this.ur = ur;
-	}
-
-	public List<UR> allocateUR() {
-		User user;
+	public List<UR> allocateUR(List<User> users, List<UR> urs) {
 		UR ur;
+		User user;
 		int cpt = 0;
-		for(int i = 0; i < MAX_TIME; i++) {
-			Iterator<User> it = users.iterator();
-			Iterator<UR> it_ur = this.ur.iterator();
-			while(it.hasNext() && it_ur.hasNext()){
-				do {
-					// There is an user 
-					if(!it.hasNext()) {
-						it = users.iterator();
-						cpt++;
-					}
-					user = it.next();
-				} while(user.getCurrentPacket() == null && cpt == 1);
-
-				if(user.getCurrentPacket() != null) {
-					ur = it_ur.next();
-					ur.affectURToUser(user);
-					user.checkPacket();
+		Iterator<User> it = users.iterator();
+		Iterator<UR> it_ur = urs.iterator();
+		while(it.hasNext() && it_ur.hasNext()){
+			do {
+				// There is an user 
+				if(!it.hasNext()) {
+					it = users.iterator();
+					cpt++;
 				}
+				user = it.next();
+			} while(user.getCurrentPacket() == null && cpt == 1);
+
+			if(user.getCurrentPacket() != null) {
+				ur = it_ur.next();
+				ur.affectURToUser(user);
+				user.checkPacket();
 			}
 		}
-		return this.ur;
+
+		return urs;
 	}
 }

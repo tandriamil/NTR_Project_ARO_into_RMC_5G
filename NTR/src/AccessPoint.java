@@ -57,6 +57,18 @@ public class AccessPoint {
 	public void nextState() {
 
 		// TODO
+
+		// Allocate each UR to the correct User
+	}
+
+
+	/**
+	 * Display the URs
+	 */
+	public void displayUR() {
+		for (UR u : this.ur) {
+			System.out.println("[" + u.getId() + "] = User n°" + ((u.getUser() != null) ? u.getUser().getId() : "NULL"));
+		}
 	}
 
 

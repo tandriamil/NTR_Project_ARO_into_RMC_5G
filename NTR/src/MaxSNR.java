@@ -3,35 +3,25 @@ import java.util.Iterator;
 
 public class MaxSNR implements Algorithm {
 
-	private static final int MAX_TIME = 100;
-
-	private List<User> users;
-	private List<UR> ur;
-
-	public MaxSNR(List<User> users, List<UR> ur) {
-		this.users = users;
-		this.ur = ur;
-	}
-
-	public List<UR> allocateUR() {
+	public List<UR> allocateUR(List<User> users, List<UR> urs) {
 		User user;
 		UR ur;
-		int cpt = 0;
-		for(int i = 0; i < MAX_TIME; i++) {
-			Iterator<UR> it_ur = this.ur.iterator();
-			while(it_ur.hasNext()) {
-				ur = it_ur.next();
-				user = getUserWithMaxSNR();
 
-				ur.affectURToUser(user);
-				user.checkPacket();
-			}
+		Iterator<UR> it_ur = urs.iterator();
+		while(it_ur.hasNext()) {
+			ur = it_ur.next();
+			user = getUserWithMaxSNR(users);
+
+			ur.affectURToUser(user);
+			user.checkPacket();
 		}
-		return this.ur;
+
+		return urs;
 
 	}
 
-	public User getUserWithMaxSNR() {
+
+	private User getUserWithMaxSNR(List<User> users) {
 		User user, userWithMaxSNR = null;
 		Iterator<User> it = users.iterator();
 		while(it.hasNext()) {
