@@ -12,7 +12,7 @@ public class MaxSNR {
 		this.users = users;
 	}
 
-	public void allocateUR() {
+	public List<UR> allocateUR() {
 		User user;
 		UR ur;
 		int cpt = 0;
@@ -21,8 +21,12 @@ public class MaxSNR {
 			while(it_ur.hasNext()) {
 				ur = it_ur.next();
 				user = getUserWithMaxSNR();
+
+				ur.affectURToUser(user);
+				user.checkPacket();
 			}
 		}
+		return ur;
 
 	}
 
@@ -31,7 +35,7 @@ public class MaxSNR {
 		Iterator<User> it = users.iterator();
 		while(it.hasNext()) {
 			user = it.next();
-			if(userWithMaxSNR == null || user.getSNR() > userWithMaxSNR.getSNR())
+			if((userWithMaxSNR == null || user.getSNR() > userWithMaxSNR.getSNR()) && user.getCurrentPacket() == null)
 				userWithMaxSNR = user;
 		}
 

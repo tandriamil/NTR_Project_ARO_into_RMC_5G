@@ -12,7 +12,7 @@ public class RoundRobin {
 		this.users = users;
 	}
 
-	public void allocateUR() {
+	public List<UR> allocateUR() {
 		User user;
 		UR ur;
 		int cpt = 0;
@@ -37,6 +37,6 @@ public class RoundRobin {
 				user.checkPacket();
 			}
 		}
-
+		return ur;
 	}
 }
