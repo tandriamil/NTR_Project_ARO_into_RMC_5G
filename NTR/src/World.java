@@ -7,8 +7,6 @@ import java.util.List;
 public class World {
 
 	// Constants
-	public static final int RR_ALLOCATION_ALGORITHM = 1;
-	public static final int MAX_SNR_ALLOCATION_ALGORITHM = 2;
 	public static final int MAX_TIME = 200000;
 
 	// Attributes
@@ -60,16 +58,13 @@ public class World {
 	 */
 	public boolean addAccessPoint(int ressourceAllocationAlgorithm) {
 
-		// TODO: In function of the ressourceAllocationAlgorithm passed
-		// Put the correct class for the access point
-
 		// Adds the access point
-		aps.add(new AccessPoint(this));
+		aps.add(new AccessPoint(this, ressourceAllocationAlgorithm));
 
 		// Increment the number of nbAccessPoints
 		++nbAccessPoints;
 
-		// Check value returned
+		// Check if the AP is really added to the list
 		return (getAccessPoint(nbAccessPoints-1) != null);
 	}
 

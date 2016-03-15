@@ -29,14 +29,13 @@ public class RoundRobin {
 					user = it.next();
 				} while(user.getCurrentPacket() == null && cpt == 1);
 
-				if(user.getCurrentPacket() == null)
-					return;
-
-				ur = it_ur.next();
-				ur.affectURToUser(user);
-				user.checkPacket();
+				if(user.getCurrentPacket() != null) {
+					ur = it_ur.next();
+					ur.affectURToUser(user);
+					user.checkPacket();
+				}
 			}
 		}
-		return ur;
+		return this.ur;
 	}
 }

@@ -27,7 +27,7 @@ public class Executable {
 		System.out.println("Tests with one access point and RR allocation algorithm");
 
 		// Add an access point
-		if (!world.addAccessPoint(World.RR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint(AccessPoint.RR_ALLOCATION_ALGORITHM)) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}
@@ -48,7 +48,7 @@ public class Executable {
 		System.out.println("\tTest with one access point and MaxSNR allocation algorithm");
 
 		// Add an access point
-		if (!world.addAccessPoint(World.MAX_SNR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint(AccessPoint.MAX_SNR_ALLOCATION_ALGORITHM)) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}

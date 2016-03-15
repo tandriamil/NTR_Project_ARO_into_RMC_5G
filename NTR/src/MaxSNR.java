@@ -26,7 +26,7 @@ public class MaxSNR {
 				user.checkPacket();
 			}
 		}
-		return ur;
+		return this.ur;
 
 	}
 
