@@ -7,9 +7,10 @@ public class AccessPoint {
 	// Constants
 	public static final int RR_ALLOCATION_ALGORITHM = 1;
 	public static final int MAX_SNR_ALLOCATION_ALGORITHM = 2;
+	public static final int NB_UR = 128;
 	
 	// Prameters
-	private UR ur;
+	private List<UR> ur;
 	private List<User> users;
 	private World world;
 	private int nb_Paket;
@@ -23,7 +24,7 @@ public class AccessPoint {
 	 * @param ressourceAllocationAlgorithm The ressource allocation algorithm to use
 	 */
 	public AccessPoint(World world, int ressourceAllocationAlgorithm) {
-		ur = new UR(this);
+		ur = new ArrayList<UR>();
 		users = new ArrayList<User>();
 		this.world = world;
 		this.nb_Paket = 0;
@@ -66,6 +67,9 @@ public class AccessPoint {
 
 		// First, clear the list
 		users.clear();
+
+		// Initialize the UR list
+		for (int i = 0; i < NB_UR; ++i) ur.add(new UR(this));
 
 		// Add the correct number of users
 		// The modulo is to put half of the users as near and the other half as far

@@ -45,7 +45,7 @@ public class Executable {
 		// Clear the world
 		world.clear();
 
-		System.out.println("\tTest with one access point and MaxSNR allocation algorithm");
+		System.out.println("Test with one access point and MaxSNR allocation algorithm");
 
 		// Add an access point
 		if (!world.addAccessPoint(AccessPoint.MAX_SNR_ALLOCATION_ALGORITHM)) {
