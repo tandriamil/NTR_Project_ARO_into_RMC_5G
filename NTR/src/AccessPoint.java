@@ -69,7 +69,7 @@ public class AccessPoint {
 		users.clear();
 
 		// Initialize the UR list
-		for (int i = 0; i < NB_UR; ++i) ur.add(new UR(this));
+		for (int i = 0; i < NB_UR; ++i) ur.add(new UR(i, this));
 
 		// Add the correct number of users
 		// The modulo is to put half of the users as near and the other half as far
