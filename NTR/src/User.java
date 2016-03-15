@@ -1,11 +1,12 @@
-import java.util.PriorityQueue;
+import java.util.LinkedList;
+import java.util.Deque;
 
 
 public class User {
 	private int id;
 	private boolean near;
 	private AccessPoint accessPoint;
-	private PriorityQueue<Packet> buffer;
+	private Deque<Packet> buffer;
 	private int debitMoy;
 	private int debitCurrent;
 	
@@ -13,7 +14,7 @@ public class User {
 		this.id = id;
 		this.accessPoint = accessPoint;
 		this.near = near;
-		buffer = new PriorityQueue<Packet>();
+		buffer = new LinkedList<Packet>();
 		if(near) {
 			debitMoy = 6;
 		}
@@ -44,7 +45,7 @@ public class User {
 	
 	public void packetTerminated() {
 		getCurrentPacket().setEndSend(accessPoint.getTime());
-		buffer.remove();
+		buffer.removeFirst();
 	}
 
 	public void calculateDebit() {

@@ -13,8 +13,8 @@ public class AccessPoint {
 	private List<UR> ur;
 	private List<User> users;
 	private World world;
+	private Algorithm alg;
 	private int nb_Paket;
-	private int res_alloc_alg;  // Check world constants
 
 
 	/**
@@ -28,7 +28,26 @@ public class AccessPoint {
 		users = new ArrayList<User>();
 		this.world = world;
 		this.nb_Paket = 0;
-		this.res_alloc_alg = ressourceAllocationAlgorithm;
+
+		// In function of the ressource algorithm asked
+		switch (ressourceAllocationAlgorithm) {
+
+			// RoundRobin
+			case RR_ALLOCATION_ALGORITHM:
+				alg = new RoundRobin();
+				break;
+
+			// MaxSNR
+			case MAX_SNR_ALLOCATION_ALGORITHM:
+				alg = new MaxSNR();
+				break;
+
+			// Error
+			default:
+				System.err.println("[AccessPoint] Unknown ressource allocation algorithm");
+				System.exit(-1);
+				break;
+		}
 	}
 
 
@@ -56,9 +75,15 @@ public class AccessPoint {
 	 */
 	public void nextState() {
 
-		// TODO
+		// Clear the ur first
+		for (UR u : this.ur) u.clearUR();
 
-		// Allocate each UR to the correct User
+		// Create a packet for each user
+		// This function randomly create packets, not always
+		for (User u : this.users) u.createPacket();
+
+		// Get the new UR allocation
+		this.ur = alg.allocateUR(this.users, this.ur);
 	}
 
 
@@ -79,8 +104,9 @@ public class AccessPoint {
 	 */
 	public void init(int nbUsers) {
 
-		// First, clear the list
+		// First, clear the two lists
 		users.clear();
+		ur.clear();
 
 		// Initialize the UR list
 		for (int i = 0; i < NB_UR; ++i) ur.add(new UR(i, this));
