@@ -1,15 +1,16 @@
 import java.util.List;
 import java.util.Iterator;
 
-public class MaxSNR {
+public class MaxSNR implements Algorithm {
 
 	private static final int MAX_TIME = 100;
 
 	private List<User> users;
 	private List<UR> ur;
 
-	public MaxSNR(List<User> users) {
+	public MaxSNR(List<User> users, List<UR> ur) {
 		this.users = users;
+		this.ur = ur;
 	}
 
 	public List<UR> allocateUR() {

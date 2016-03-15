@@ -1,15 +1,16 @@
 import java.util.List;
 import java.util.Iterator;
 
-public class RoundRobin {
+public class RoundRobin implements Algorithm{
 
 	private static final int MAX_TIME = 100;
 
 	private List<User> users;
 	private List<UR> ur;
 
-	public RoundRobin(List<User> users) {
+	public RoundRobin(List<User> users, List<UR> ur) {
 		this.users = users;
+		this.ur = ur;
 	}
 
 	public List<UR> allocateUR() {
