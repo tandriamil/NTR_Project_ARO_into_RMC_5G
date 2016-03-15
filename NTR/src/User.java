@@ -58,4 +58,8 @@ public class User {
 	public int getSNR() {
 		return 0;
 	}
+
+	public int getId() {
+		return this.id;
+	}
 }

@@ -17,4 +17,8 @@ public class UR {
 	public int getId() {
 		return this.id;
 	}
+
+	public User getUser() {
+		return this.user;
+	}
 }
