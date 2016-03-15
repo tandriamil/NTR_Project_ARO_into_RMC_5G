@@ -4,13 +4,11 @@ import java.util.Iterator;
 public class CalculThroughput implements Calculation{
 
 	private World world; 
-	private int time;
     private int debitMax;
 
 	public CalculThroughput(World world){
 		this.world = world;
         this.debitMax = 0;
-		this.time = this.world.getTime();
 	}
 
 	public World getWorld(){
