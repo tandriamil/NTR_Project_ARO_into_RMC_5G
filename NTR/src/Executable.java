@@ -4,7 +4,7 @@
 public class Executable {
 
 	// Constants
-	public static final int MAX_USERS = 16;
+	public static final int MAX_USERS = 256;
 
 
 	/**
@@ -15,7 +15,7 @@ public class Executable {
 		/* ######################### Initialisation ######################### */
 
 		// Variables used here
-		int nb_users;
+		int i, nb_users;
 
 		// Create a new World
 		World world = new World();
@@ -33,7 +33,10 @@ public class Executable {
 		}
 
 		// Change the number of users dynamically
-		for (nb_users = 1; nb_users < MAX_USERS; ++nb_users) {
+		for (i = 1, nb_users = 1; nb_users < MAX_USERS; ++i) {
+
+			// Get the power of 2
+			nb_users = nb_users * 2;
 
 			// Launch the simulation on the world with this number of users
 			world.bootstrap(nb_users);
@@ -54,7 +57,10 @@ public class Executable {
 		}
 
 		// Change the number of users dynamically
-		for (nb_users = 1; nb_users < MAX_USERS; ++nb_users) {
+		for (i = 1, nb_users = 1; nb_users < MAX_USERS; ++i) {
+
+			// Get the power of 2
+			nb_users = nb_users * 2;
 
 			// Launch the simulation on the world with this number of users
 			world.bootstrap(nb_users);
