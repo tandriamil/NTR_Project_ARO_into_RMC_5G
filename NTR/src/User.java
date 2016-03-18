@@ -81,7 +81,7 @@ public class User {
 	}
 
 	public int getSNR() {
-		return 0;
+		return this.debitCurrent;
 	}
 
 	public int getId() {
