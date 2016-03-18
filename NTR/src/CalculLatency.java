@@ -17,7 +17,7 @@ public class CalculLatency implements Calculation{
 	}
 
     public int getLatency(){
-        return this.delai;
+        return this.latency;
     }
 
 	public void setUser(World w){
@@ -34,8 +34,8 @@ public class CalculLatency implements Calculation{
              User user = ur_current.getUser();
              if (user != null){
              	List<Packet> packets = user.getPacket_send();
-             	Iterator<Packet> it = packets.iterator();
-             	while(it.hasNext()){
+             	Iterator<Packet> it2 = packets.iterator();
+             	while(it2.hasNext()){
 
              	}
 

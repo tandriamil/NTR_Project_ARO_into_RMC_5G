@@ -1,6 +1,9 @@
 import java.util.LinkedList;
 import java.util.Deque;
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+
 
 
 public class User {
