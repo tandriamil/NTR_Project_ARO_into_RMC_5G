@@ -1,23 +1,25 @@
 
 import java.util.List;
 import java.util.Iterator;
+import java.io.File;
+import java.io.IOException;
 
 public class CalculThroughput implements Calculation{
 
 	private World world; 
-    private int debitMax;
+    private int throughputMax;
 
 	public CalculThroughput(World world){
 		this.world = world;
-        this.debitMax = 0;
+        this.throughputMax = 0;
 	}
 
 	public World getWorld(){
 		return this.world;
 	}
 
-    public int getDebitMax(){
-        return this.debitMax;
+    public int getThroughputMax(){
+        return this.throughputMax;
     }
 
 	public void setUser(World w){
@@ -34,13 +36,32 @@ public class CalculThroughput implements Calculation{
              UR ur_current = it.next();
              User user = ur_current.getUser();
              if (user != null){
-                this.debitMax += user.getDebitCurrent();
+                this.throughputMax += user.getDebitCurrent();
              }       
         }
-
-        this.debitMax = this.debitMax / World.MAX_TIME;
 	}
 
 
-	public void finalize(){ }
+	public void finalize(int nb_Users){
+		this.throughputMax = this.throughputMax / World.MAX_TIME;
+		//Nom du fichier ou écrire et lire les résultats
+		String nameFile = "throughput.csv"; 
+		File file = new File(nameFile);
+
+		try{
+			//Création du fichier
+			if(file.createNewFile()){
+				System.out.println("Le fichier a été créé");
+			}else{
+				 System.out.println("Erreur, Impossible de créer ce fichier");
+			}
+			//Ouvrir le fichier en lecture et écriture
+			BufferedReader buf = new BufferedReader(new FileReader(nameFile));
+        	BufferedWriter writer = new BufferedWriter(new FileWriter(nameFile;
+
+		}catch(IOException e){
+			e.printStackTrace();
+		} 
+
+	}
 }
