@@ -13,5 +13,5 @@ public interface Calculation {
 	 * The function to finalize calculations
 	 * Write the results in the file
 	 */
-	public void finalize();
+	public void finalize(int nb_Users);
 }

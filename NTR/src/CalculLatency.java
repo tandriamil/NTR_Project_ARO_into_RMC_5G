@@ -48,5 +48,5 @@ public class CalculLatency implements Calculation{
         this.latency = this.latency / nbr_user;			
 	}
 
-	public void finalize(){ }
+	public void finalize(int nbr_user){ }
 }

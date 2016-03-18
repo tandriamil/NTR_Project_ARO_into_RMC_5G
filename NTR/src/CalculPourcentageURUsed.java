@@ -41,5 +41,5 @@ public class CalculPourcentageURUsed implements Calculation{
         this.urUsed = this.urUsed / 128;			
 	}
 
-	public void finalize(){ }
+	public void finalize(int nbr_user){ }
 }

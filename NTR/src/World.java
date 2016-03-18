@@ -128,7 +128,7 @@ public class World {
 			}
 
 			// In the end, finalize the calculation
-			for (Calculation c : calculations) c.finalize();
+			for (Calculation c : calculations) c.finalize(nbUsers);
 
 		}
 	}

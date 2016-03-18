@@ -45,26 +45,30 @@ public class CalculThroughput implements Calculation{
         }
 	}
 
-	public void finalize(){
-		//Only for fix unimplements bug
-	}
-
 	public void finalize(int nb_Users){
-		this.throughputMax = this.throughputMax / World.MAX_TIME;
-		//Nom du fichier ou écrire et lire les résultats
-		String nameFile = "throughput.csv"; 
-		File file = new File(nameFile);
 
+		this.throughputMax = this.throughputMax / World.MAX_TIME;
+		String nameFile = "throughput.csv"; 
+		File file = null;
+        BufferedWriter writer = null;
+		
 		try{
-			//Création du fichier
+
+			file = new File(nameFile);
+
 			if(file.createNewFile()){
-				System.out.println("Le fichier a été créé");
+
+				System.out.println("The file was created");
+
 			}else{
-				 System.out.println("Erreur, Impossible de créer ce fichier");
+
+				System.out.println("Error Can not create this file");
+
 			}
-			//Ouvrir le fichier en lecture et écriture
-			BufferedReader buf = new BufferedReader(new FileReader(nameFile));
-        	BufferedWriter writer = new BufferedWriter(new FileWriter(nameFile));
+
+        	writer = new BufferedWriter(new FileWriter(nameFile));
+        	writer.write(nb_Users + "," + this.throughputMax + "\n"); 
+        	writer.close(); 
 
 		}catch(IOException e){
 			e.printStackTrace();
