@@ -6,6 +6,7 @@ public class User {
 	private boolean near;
 	private AccessPoint accessPoint;
 	private PriorityQueue<Packet> buffer;
+	private List<Packet> packet_send;
 	private int debitMoy;
 	private int debitCurrent;
 	
@@ -13,6 +14,7 @@ public class User {
 		this.id = id;
 		this.accessPoint = accessPoint;
 		this.near = near;
+		this.packet_send = new ArrayList<Packet>();;
 		buffer = new PriorityQueue<Packet>();
 		if(near) {
 			debitMoy = 6;
@@ -42,9 +44,18 @@ public class User {
 		return buffer.peek();
 	}
 	
+ 	public List<Packet> getPacket_send() {
+		return this.packet_send;
+	}
+
 	public void packetTerminated() {
 		getCurrentPacket().setEndSend(accessPoint.getTime());
+		this.packet_send.add(getCurrentPacket());
 		buffer.remove();
+	}
+
+	public void removePacket(){
+		this.packet_send.remove(getCurrentPacket());
 	}
 
 	public void calculateDebit() {

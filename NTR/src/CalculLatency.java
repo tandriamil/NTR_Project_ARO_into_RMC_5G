@@ -2,22 +2,22 @@
 import java.util.List;
 import java.util.Iterator;
 
-public class CalculThroughput implements Calculation{
+public class CalculLatency implements Calculation{
 
 	private World world; 
-    private int debitMax;
+    private int latency;
 
-	public CalculThroughput(World world){
+	public CalculLatency(World world){
 		this.world = world;
-        this.debitMax = 0;
+        this.latency = 0;
 	}
 
 	public World getWorld(){
 		return this.world;
 	}
 
-    public int getDebitMax(){
-        return this.debitMax;
+    public int getLatency(){
+        return this.delai;
     }
 
 	public void setUser(World w){
@@ -25,7 +25,6 @@ public class CalculThroughput implements Calculation{
 	}
 
 	public void execute(){
-						
 		AccessPoint a = world.getAccessPoint(0);
         List<UR> ur = a.getUr();
         Iterator<UR> it = ur.iterator();
@@ -34,13 +33,16 @@ public class CalculThroughput implements Calculation{
              UR ur_current = it.next();
              User user = ur_current.getUser();
              if (user != null){
-                this.debitMax += user.getDebitCurrent();
+             	List<Packet> packets = user.getPacket_send();
+             	Iterator<Packet> it = packets.iterator();
+             	while(it.hasNext()){
+
+             	}
+
              }       
         }
-
-        this.debitMax = this.debitMax / World.MAX_TIME;
+				
 	}
-
 
 	public void finalize(){ }
 }
