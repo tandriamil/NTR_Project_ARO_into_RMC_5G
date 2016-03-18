@@ -9,23 +9,7 @@ public class RoundRobin implements Algorithm {
 		int cpt = 0;
 		Iterator<User> it = users.iterator();
 		Iterator<UR> it_ur = urs.iterator();
-		// while(it.hasNext() && it_ur.hasNext()){
-		// 	do {
-		// 		// There is an user 
-		// 		if(!it.hasNext()) {
-		// 			it = users.iterator();
-		// 			cpt++;
-		// 		}
-		// 		user = it.next();
-		// 	} while(user.getCurrentPacket() == null && cpt == 1);
-
-		// 	if(user.getCurrentPacket() != null) {
-		// 		ur = it_ur.next();
-		// 		ur.affectURToUser(user);
-		// 		user.checkPacket();
-		// 	}
-		// }
-
+		
 		boolean found = false;
 
 		while(it_ur.hasNext()) {
