@@ -3,7 +3,13 @@ import java.util.Iterator;
 
 public class MaxSNR implements Algorithm {
 
-	public List<UR> allocateUR(List<User> users, List<UR> urs) {
+	private List<User> users;
+
+	public void init(List<User> users) {
+		this.users = users;
+	}
+
+	public List<UR> allocateUR(List<UR> urs) {
 		User user;
 		UR ur;
 

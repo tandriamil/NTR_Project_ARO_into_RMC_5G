@@ -87,7 +87,7 @@ public class AccessPoint {
 		}
 
 		// Get the new UR allocation
-		this.ur = alg.allocateUR(this.users, this.ur);
+		this.ur = alg.allocateUR(this.ur);
 	}
 
 
@@ -118,5 +118,8 @@ public class AccessPoint {
 		// Add the correct number of users
 		// The modulo is to put half of the users as near and the other half as far
 		for (int i = 0; i < nbUsers; ++i) users.add(new User(i, this, (i%2 == 0)));
+
+		// Init users list
+		alg.init(users);
 	}
 }

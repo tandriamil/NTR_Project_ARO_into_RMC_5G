@@ -3,11 +3,18 @@ import java.util.Iterator;
 
 public class RoundRobin implements Algorithm {
 
-	public List<UR> allocateUR(List<User> users, List<UR> urs) {
+	private List<User> users;
+	private Iterator<User> it;
+
+	public void init(List<User> users) {
+		this.users = users;
+		this.it = this.users.iterator();
+	}
+
+	public List<UR> allocateUR(List<UR> urs) {
 		UR ur;
 		User user;
 		int cpt = 0;
-		Iterator<User> it = users.iterator();
 		Iterator<UR> it_ur = urs.iterator();
 		
 		boolean found = false;
