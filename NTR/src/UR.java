@@ -21,4 +21,8 @@ public class UR {
 	public User getUser() {
 		return this.user;
 	}
+
+	public void clearUR() {
+		this.user = null;
+	}
 }

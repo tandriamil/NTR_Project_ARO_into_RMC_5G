@@ -111,7 +111,6 @@ public class World {
 
 			// Reinitialize the state of the access point
 			ap.init(nbUsers);
-			ap.displayUR();
 
 			// Loop on the time
 			while (time < MAX_TIME) {
@@ -121,6 +120,8 @@ public class World {
 
 				// Do the calculations
 				for (Calculation c : calculations) c.execute();
+
+				if (time == 100) ap.displayUR();
 
 				// Increment the time
 				++time;

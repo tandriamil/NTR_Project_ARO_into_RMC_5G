@@ -1,12 +1,15 @@
-import java.util.PriorityQueue;
+import java.util.LinkedList;
+import java.util.Deque;
+import java.util.Random;
 
 
 public class User {
 	private int id;
 	private boolean near;
 	private AccessPoint accessPoint;
-	private PriorityQueue<Packet> buffer;
 	private List<Packet> packet_send;
+	private Deque<Packet> buffer;
+	private Random numberGenerator;
 	private int debitMoy;
 	private int debitCurrent;
 	
@@ -15,17 +18,20 @@ public class User {
 		this.accessPoint = accessPoint;
 		this.near = near;
 		this.packet_send = new ArrayList<Packet>();;
-		buffer = new PriorityQueue<Packet>();
+		buffer = new LinkedList<Packet>();
 		if(near) {
 			debitMoy = 6;
 		}
 		else {
 			debitMoy = 3;
 		}
+
+		this.numberGenerator = new Random();
 	}
 	
 	public void createPacket() {
-		if((int)(Math.random() * 1000)%2 == 0){
+
+		if(this.numberGenerator.nextInt()%2 == 0){
 			Packet packet = new Packet(this, accessPoint.getTime());
 			buffer.add(packet);
 		}
@@ -33,10 +39,15 @@ public class User {
 
 	public void checkPacket() {
 		Packet packet = this.getCurrentPacket();
-		int bitsLeft = packet.getNbBitsLeft() - debitCurrent;
-		if(bitsLeft <= 0){
-			bitsLeft = 0;
-			this.packetTerminated();
+		if(packet != null) {
+			int bitsLeft = packet.getNbBitsLeft() - debitCurrent;
+			if(bitsLeft <= 0){
+				packet.setNbBitsLeft(0);
+				this.packetTerminated();
+			}
+			else {
+				packet.setNbBitsLeft(bitsLeft);
+			}
 		}
 	}
 	
@@ -51,7 +62,7 @@ public class User {
 	public void packetTerminated() {
 		getCurrentPacket().setEndSend(accessPoint.getTime());
 		this.packet_send.add(getCurrentPacket());
-		buffer.remove();
+		buffer.removeFirst();
 	}
 
 	public void removePacket(){
@@ -72,5 +83,10 @@ public class User {
 
 	public int getId() {
 		return this.id;
+	}
+
+	public void seedNumberGenerator() {
+		// Set the seed for the random number generator
+		this.numberGenerator.setSeed(System.currentTimeMillis());
 	}
 }
