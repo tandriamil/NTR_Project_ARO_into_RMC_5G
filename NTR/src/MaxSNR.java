@@ -28,7 +28,7 @@ public class MaxSNR implements Algorithm {
 		Iterator<User> it = users.iterator();
 		while(it.hasNext()) {
 			user = it.next();
-			if((userWithMaxSNR == null || user.getSNR() > userWithMaxSNR.getSNR()) && user.getCurrentPacket() == null)
+			if((userWithMaxSNR == null || user.getSNR() > userWithMaxSNR.getSNR()) && user.getCurrentPacket() != null)
 				userWithMaxSNR = user;
 		}
 
