@@ -12,7 +12,6 @@ public class User {
 	private AccessPoint accessPoint;
 	private List<Packet> packet_send;
 	private Deque<Packet> buffer;
-	private Random numberGenerator;
 	private int debitMoy;
 	private int debitCurrent;
 	
@@ -28,13 +27,10 @@ public class User {
 		else {
 			debitMoy = 3;
 		}
-
-		this.numberGenerator = new Random();
 	}
-	
-	public void createPacket() {
 
-		if(this.numberGenerator.nextInt()%2 == 0){
+	public void createPacket() {
+		if(this.randomBoolean()){
 			Packet packet = new Packet(this, accessPoint.getTime());
 			buffer.add(packet);
 		}
@@ -53,7 +49,7 @@ public class User {
 			}
 		}
 	}
-	
+
 	public Packet getCurrentPacket() {
 		return buffer.peek();
 	}
@@ -73,7 +69,8 @@ public class User {
 	}
 
 	public void calculateDebit() {
-		debitCurrent = 2*(int)(Math.random()*((debitMoy*2)/2+1));
+		debitCurrent = (int)(2*(Math.random()*((debitMoy*2)/2+1)));
+		//System.out.println("debitCurrent pour utilisateur " + near + " = " + debitCurrent);
 	}
 
 	public int getDebitCurrent(){
@@ -88,8 +85,7 @@ public class User {
 		return this.id;
 	}
 
-	public void seedNumberGenerator() {
-		// Set the seed for the random number generator
-		this.numberGenerator.setSeed(System.currentTimeMillis());
+	private boolean randomBoolean() {
+		return (Math.random() < 0.25);
 	}
 }

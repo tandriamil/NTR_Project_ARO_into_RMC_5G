@@ -3,6 +3,9 @@
 build:
 	javac -cp bin -d bin src/*.java
 
+run:
+	java -cp bin Executable
+
 clean: mrproper
 
 mrproper:

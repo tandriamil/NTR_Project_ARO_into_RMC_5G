@@ -81,7 +81,6 @@ public class AccessPoint {
 		// Create a packet for each user
 		// This function randomly create packets, not always
 		for (User u : this.users) {
-			u.seedNumberGenerator();
 			u.createPacket();
 			// Set the current debit for all users
 			u.calculateDebit();
