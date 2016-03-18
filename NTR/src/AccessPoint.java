@@ -83,6 +83,8 @@ public class AccessPoint {
 		for (User u : this.users) {
 			u.seedNumberGenerator();
 			u.createPacket();
+			// Set the current debit for all users
+			u.calculateDebit();
 		}
 
 		// Get the new UR allocation

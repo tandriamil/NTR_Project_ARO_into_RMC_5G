@@ -37,10 +37,15 @@ public class User {
 
 	public void checkPacket() {
 		Packet packet = this.getCurrentPacket();
-		int bitsLeft = packet.getNbBitsLeft() - debitCurrent;
-		if(bitsLeft <= 0){
-			bitsLeft = 0;
-			this.packetTerminated();
+		if(packet != null) {
+			int bitsLeft = packet.getNbBitsLeft() - debitCurrent;
+			if(bitsLeft <= 0){
+				packet.setNbBitsLeft(0);
+				this.packetTerminated();
+			}
+			else {
+				packet.setNbBitsLeft(bitsLeft);
+			}
 		}
 	}
 	
