@@ -26,6 +26,9 @@ public class World {
 		nbAccessPoints = 0;
 		aps = new ArrayList<AccessPoint>();
 		calculations = new ArrayList<Calculation>();
+
+		// Add the different calculations
+		calculations.add(new CalculThroughput(this));
 	}
 
 
