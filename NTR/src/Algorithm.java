@@ -6,4 +6,6 @@ public interface Algorithm {
 
 	public void init(List<User> users);
 
+	public String getName();
+
 }

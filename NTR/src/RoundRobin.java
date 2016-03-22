@@ -3,6 +3,9 @@ import java.util.Iterator;
 
 public class RoundRobin implements Algorithm {
 
+	// Constants
+	public static final String NAME = "RR";
+
 	private List<User> users;
 	private Iterator<User> it;
 
@@ -64,5 +67,9 @@ public class RoundRobin implements Algorithm {
 			// Set the current debit for all users
 			user.calculateDebit();
 		}
+	}
+
+	public String getName() {
+		return NAME;
 	}
 }

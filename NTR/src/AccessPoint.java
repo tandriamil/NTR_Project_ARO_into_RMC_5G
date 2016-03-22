@@ -100,6 +100,16 @@ public class AccessPoint {
 
 
 	/**
+	 * Get the ressource allocation used here
+	 *
+	 * @return The ressource allocation algorithm used here
+	 */
+	public Algorithm getResAllocAlg() {
+		return alg;
+	}
+
+
+	/**
 	 * Initialize the access point
 	 *
 	 * @param nbUsers The number of users for this access point

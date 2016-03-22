@@ -3,6 +3,9 @@ import java.util.Iterator;
 
 public class MaxSNR implements Algorithm {
 
+	// Constants
+	public static final String NAME = "RR";
+
 	private List<User> users;
 
 	public void init(List<User> users) {
@@ -43,5 +46,9 @@ public class MaxSNR implements Algorithm {
 		}
 
 		return userWithMaxSNR;
+	}
+
+	public String getName() {
+		return NAME;
 	}
 }
