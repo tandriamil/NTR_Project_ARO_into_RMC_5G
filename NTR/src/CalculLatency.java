@@ -48,5 +48,32 @@ public class CalculLatency implements Calculation{
         this.latency = this.latency / nbr_user;			
 	}
 
-	public void finalize(int nbr_user){ }
+	public void finalize(int nbr_user){ 
+	
+	/*	String nameFile = "latency.csv"; 
+		File file = null;
+        BufferedWriter writer = null;
+		
+		try{
+
+			file = new File(nameFile);
+
+			if(file.createNewFile()){
+
+				System.out.println("The file was created");
+
+			}else{
+
+				System.out.println("Error Can not create this file");
+
+			}
+
+        	writer = new BufferedWriter(new FileWriter(nameFile));
+        	writer.write(this.latency"\n"); 
+        	writer.close(); 
+
+		}catch(IOException e){
+			e.printStackTrace();
+		}*/
+	}
 }
