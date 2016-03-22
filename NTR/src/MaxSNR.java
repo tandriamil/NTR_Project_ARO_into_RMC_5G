@@ -4,7 +4,7 @@ import java.util.Iterator;
 public class MaxSNR implements Algorithm {
 
 	// Constants
-	public static final String NAME = "RR";
+	public static final String NAME = "MAX_SNR";
 
 	private List<User> users;
 

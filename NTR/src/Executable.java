@@ -15,7 +15,7 @@ public class Executable {
 		/* ######################### Initialisation ######################### */
 
 		// Variables used here
-		int i, nb_users;
+		int nb_users;
 
 		// Create a new World
 		World world = new World();
@@ -33,10 +33,7 @@ public class Executable {
 		}
 
 		// Change the number of users dynamically
-		for (i = 1, nb_users = 1; nb_users < MAX_USERS; ++i) {
-
-			// Get the power of 2
-			nb_users = nb_users * 2;
+		for (nb_users = 2; nb_users < MAX_USERS; nb_users += 2) {
 
 			// Launch the simulation on the world with this number of users
 			world.bootstrap(nb_users);
@@ -46,7 +43,7 @@ public class Executable {
 
 		/* ######################### One access point - MaxSNR ######################### */
 		// Clear the world
-		/*world.clear();
+		world.clear();
 
 		System.out.println("Test with one access point and MaxSNR allocation algorithm");
 
@@ -57,14 +54,11 @@ public class Executable {
 		}
 
 		// Change the number of users dynamically
-		for (i = 1, nb_users = 1; nb_users < MAX_USERS; ++i) {
-
-			// Get the power of 2
-			nb_users = nb_users * 2;
+		for (nb_users = 2; nb_users < MAX_USERS; nb_users += 2) {
 
 			// Launch the simulation on the world with this number of users
 			world.bootstrap(nb_users);
-		}*/
+		}
 
 
 

@@ -124,7 +124,7 @@ public class World {
 				// Do the calculations
 				for (Calculation c : calculations) c.execute();
 
-				if (time == 100) ap.displayUR();
+				//if (time == 100) ap.displayUR();
 
 				// Increment the time
 				++time;
