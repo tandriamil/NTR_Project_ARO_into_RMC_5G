@@ -20,6 +20,8 @@ public class RoundRobin implements Algorithm {
 		boolean found = false;
 
 		while(it_ur.hasNext()) {
+			calculateDebit();
+			
 			cpt = 0;
 			ur = it_ur.next();
 			user = null;
@@ -52,5 +54,15 @@ public class RoundRobin implements Algorithm {
 		}
 
 		return urs;
+	}
+
+	private void calculateDebit() {
+		Iterator<User> it = users.iterator();
+		User user;
+		while(it.hasNext()) {
+			user = it.next();
+			// Set the current debit for all users
+			user.calculateDebit();
+		}
 	}
 }

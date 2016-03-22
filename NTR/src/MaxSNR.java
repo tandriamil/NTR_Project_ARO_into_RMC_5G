@@ -34,6 +34,10 @@ public class MaxSNR implements Algorithm {
 		Iterator<User> it = users.iterator();
 		while(it.hasNext()) {
 			user = it.next();
+			
+			// Set the current debit for all users
+			user.calculateDebit();
+
 			if((userWithMaxSNR == null || user.getSNR() > userWithMaxSNR.getSNR()) && user.getCurrentPacket() != null)
 				userWithMaxSNR = user;
 		}

@@ -82,8 +82,6 @@ public class AccessPoint {
 		// This function randomly create packets, not always
 		for (User u : this.users) {
 			u.createPacket();
-			// Set the current debit for all users
-			u.calculateDebit();
 		}
 
 		// Get the new UR allocation
