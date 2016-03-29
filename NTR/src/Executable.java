@@ -69,13 +69,20 @@ public class Executable {
 		System.out.println("Tests with two access points and RR allocation algorithm");
 
 		// Add two access points
-		if (!world.addAccessPoint(World.RR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint(AccessPoint.RR_ALLOCATION_ALGORITHM)) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}
-		if (!world.addAccessPoint(World.RR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint(AccessPoint.RR_ALLOCATION_ALGORITHM)) {
 			System.err.println("[ERROR] World: Can't add the access point number 2 to the list");
 			System.exit(-1);
+		}
+
+		// Change the number of users dynamically
+		for (nb_users = 2; nb_users < MAX_USERS; nb_users += 2) {
+
+			// Launch the simulation on the world with this number of users
+			world.bootstrap(nb_users);
 		}*/
 
 
@@ -87,13 +94,20 @@ public class Executable {
 		System.out.println("Tests with two access points and MaxSNR allocation algorithm");
 
 		// Add two access points
-		if (!world.addAccessPoint(World.MAX_SNR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint(AccessPoint.MAX_SNR_ALLOCATION_ALGORITHM)) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}
-		if (!world.addAccessPoint(World.MAX_SNR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint(AccessPoint.MAX_SNR_ALLOCATION_ALGORITHM)) {
 			System.err.println("[ERROR] World: Can't add the access point number 2 to the list");
 			System.exit(-1);
+		}
+
+		// Change the number of users dynamically
+		for (nb_users = 2; nb_users < MAX_USERS; nb_users += 2) {
+
+			// Launch the simulation on the world with this number of users
+			world.bootstrap(nb_users);
 		}*/
 
 	}

@@ -101,6 +101,7 @@ public class World {
 
 	/**
 	 * Launch a new simulation with the number of users on this world
+	 * New version using iterators on each URs
 	 *
 	 * @param nbUsers The number of users
 	 */
@@ -109,31 +110,50 @@ public class World {
 		// Reinitialize the time
 		time = 0;
 
-		// Put the number of users for each access points
+		// Get iterators on each URs
+		List<Iterator<UR>> it_urs = new ArrayList<Iterator<UR>>();
+
+		// Initialize each access points
 		for (AccessPoint ap : aps) {
 
 			// Reinitialize the state of the access point
 			ap.init(nbUsers);
 
-			// Loop on the time
-			while (time < MAX_TIME) {
+			// Put their AP iterators into the list
+			urs.add(ap.getUR().iterator());
+		}
 
-				// Switch to the next state
-				ap.nextState();
+		// Loop on the time
+		while (time < MAX_TIME) {
 
-				// Do the calculations
-				for (Calculation c : calculations) c.execute();
+			// Clear and manage each ur list
+			UR current;
+			for (Iterator<UR> ur : it_urs) {
 
-				//if (time == 100) ap.displayUR();
+				// For each ur in this list
+				while (ur.hasNext()) {
 
-				// Increment the time
-				++time;
+					// Get it
+					current = ur.next();
+
+					// Clear it
+					current.clearUR();
+
+					// Allocate it
+
+					// Check packet
+				}
 			}
 
-			// In the end, finalize the calculation
-			for (Calculation c : calculations) c.finalize(nbUsers);
+			// Do the calculations
+			for (Calculation c : calculations) c.execute();
 
+			// Increment the time
+			++time;
 		}
+
+		// In the end, finalize the calculation
+		for (Calculation c : calculations) c.finalize(nbUsers);
 	}
 
 
