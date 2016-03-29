@@ -59,6 +59,45 @@ public class RoundRobin implements Algorithm {
 		return urs;
 	}
 
+	public UR allocateSingleUR(UR ur) {
+		User user;
+		int cpt = 0;
+		
+		boolean found = false;
+
+		calculateDebit();
+			
+		cpt = 0;
+		user = null;
+		found = false;
+
+		while(!found && cpt < 2) {
+			if(it.hasNext()) {
+				user = it.next();
+				if(user.getCurrentPacket() != null){
+					found = true;
+				}
+				else {
+					user = null;
+				}
+			}
+			else {
+				cpt ++;
+				it = users.iterator();
+			}
+		}
+
+		if(user != null) {
+			ur.affectURToUser(user);
+			//user.checkPacket();
+		}
+
+		if(!it.hasNext())
+			it = users.iterator();
+
+		return ur;
+	}
+
 	private void calculateDebit() {
 		Iterator<User> it = users.iterator();
 		User user;

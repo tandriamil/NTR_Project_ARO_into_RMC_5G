@@ -43,7 +43,7 @@ public class Executable {
 
 		/* ######################### One access point - MaxSNR ######################### */
 		// Clear the world
-		world.clear();
+		/*world.clear();
 
 		System.out.println("Test with one access point and MaxSNR allocation algorithm");
 
@@ -58,7 +58,7 @@ public class Executable {
 
 			// Launch the simulation on the world with this number of users
 			world.bootstrap(nb_users);
-		}
+		}*/
 
 
 

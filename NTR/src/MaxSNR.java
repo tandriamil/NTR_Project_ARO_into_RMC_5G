@@ -19,7 +19,7 @@ public class MaxSNR implements Algorithm {
 		Iterator<UR> it_ur = urs.iterator();
 		while(it_ur.hasNext()) {
 			ur = it_ur.next();
-			user = getUserWithMaxSNR(users);
+			user = getUserWithMaxSNR();
 
 			if(user != null){
 				ur.affectURToUser(user);
@@ -31,8 +31,19 @@ public class MaxSNR implements Algorithm {
 
 	}
 
+	public UR allocateSingleUR(UR ur) {
+		User user = getUserWithMaxSNR();
 
-	private User getUserWithMaxSNR(List<User> users) {
+		if(user != null){
+			ur.affectURToUser(user);
+			//user.checkPacket();
+		}
+		
+		return ur;
+
+	}
+
+	private User getUserWithMaxSNR() {
 		User user, userWithMaxSNR = null;
 		Iterator<User> it = users.iterator();
 		while(it.hasNext()) {
