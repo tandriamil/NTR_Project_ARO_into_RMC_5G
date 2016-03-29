@@ -186,7 +186,7 @@ public class World {
 				for (List<UR> ur_list : urs) {
 					current = ur_list.get(i);
 
-					current.getUser().checkPacket();
+					if (current.getUser() != null) current.getUser().checkPacket();
 				}
 			}
 
