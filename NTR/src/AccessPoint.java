@@ -5,15 +5,12 @@ import java.util.List;
 public class AccessPoint {
 
 	// Constants
-	public static final int RR_ALLOCATION_ALGORITHM = 1;
-	public static final int MAX_SNR_ALLOCATION_ALGORITHM = 2;
 	public static final int NB_UR = 128;
 	
 	// Prameters
 	private List<UR> ur;
 	private List<User> users;
 	private World world;
-	private Algorithm alg;
 	private int nb_Paket;
 
 
@@ -21,33 +18,12 @@ public class AccessPoint {
 	 * Constructor for the access point
 	 *
 	 * @param world The world where this AP exists
-	 * @param ressourceAllocationAlgorithm The ressource allocation algorithm to use
 	 */
-	public AccessPoint(World world, int ressourceAllocationAlgorithm) {
+	public AccessPoint(World world) {
 		ur = new ArrayList<UR>();
 		users = new ArrayList<User>();
 		this.world = world;
 		this.nb_Paket = 0;
-
-		// In function of the ressource algorithm asked
-		switch (ressourceAllocationAlgorithm) {
-
-			// RoundRobin
-			case RR_ALLOCATION_ALGORITHM:
-				alg = new RoundRobin();
-				break;
-
-			// MaxSNR
-			case MAX_SNR_ALLOCATION_ALGORITHM:
-				alg = new MaxSNR();
-				break;
-
-			// Error
-			default:
-				System.err.println("[AccessPoint] Unknown ressource allocation algorithm");
-				System.exit(-1);
-				break;
-		}
 	}
 
 
@@ -71,21 +47,15 @@ public class AccessPoint {
 
 
 	/**
-	 * Compute the next state of the access point and its users
+	 * Create packets for each user
 	 */
-	public void nextState() {
-
-		// Clear the ur first
-		for (UR u : this.ur) u.clearUR();
+	public void userCreatePacket() {
 
 		// Create a packet for each user
 		// This function randomly create packets, not always
 		for (User u : this.users) {
 			u.createPacket();
 		}
-
-		// Get the new UR allocation
-		this.ur = alg.allocateUR(this.ur);
 	}
 
 
@@ -100,21 +70,12 @@ public class AccessPoint {
 
 
 	/**
-	 * Get the ressource allocation used here
-	 *
-	 * @return The ressource allocation algorithm used here
-	 */
-	public Algorithm getResAllocAlg() {
-		return alg;
-	}
-
-
-	/**
 	 * Initialize the access point
 	 *
 	 * @param nbUsers The number of users for this access point
+	 * @param alg The ressource allocation algorithm used here
 	 */
-	public void init(int nbUsers) {
+	public void init(int nbUsers, Algorithm alg) {
 
 		// First, clear the two lists
 		users.clear();

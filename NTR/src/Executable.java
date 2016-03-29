@@ -23,11 +23,13 @@ public class Executable {
 
 
 		/* ######################### One access point - RR ######################### */
+		// Init the world
+		world.init(World.RR_ALLOCATION_ALGORITHM);
 
 		System.out.println("Tests with one access point and RR allocation algorithm");
 
 		// Add an access point
-		if (!world.addAccessPoint(AccessPoint.RR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint()) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}
@@ -42,13 +44,13 @@ public class Executable {
 
 
 		/* ######################### One access point - MaxSNR ######################### */
-		// Clear the world
-		/*world.clear();
+		// Init the world
+		/*world.init(World.MAX_SNR_ALLOCATION_ALGORITHM);
 
 		System.out.println("Test with one access point and MaxSNR allocation algorithm");
 
 		// Add an access point
-		if (!world.addAccessPoint(AccessPoint.MAX_SNR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint()) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}
@@ -63,17 +65,17 @@ public class Executable {
 
 
 		/* ######################### Two access points - RR ######################### */
-		// Clear the world
-		/*world.clear();
+		// Init the world
+		/*world.init(World.RR_ALLOCATION_ALGORITHM);
 
 		System.out.println("Tests with two access points and RR allocation algorithm");
 
 		// Add two access points
-		if (!world.addAccessPoint(AccessPoint.RR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint()) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}
-		if (!world.addAccessPoint(AccessPoint.RR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint()) {
 			System.err.println("[ERROR] World: Can't add the access point number 2 to the list");
 			System.exit(-1);
 		}
@@ -88,17 +90,17 @@ public class Executable {
 
 
 		/* ######################### Two access points - MaxSNR ######################### */
-		// Clear the world
-		/*world.clear();
+		// Init the world
+		/*world.init(World.MAX_SNR_ALLOCATION_ALGORITHM);
 
 		System.out.println("Tests with two access points and MaxSNR allocation algorithm");
 
 		// Add two access points
-		if (!world.addAccessPoint(AccessPoint.MAX_SNR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint()) {
 			System.err.println("[ERROR] World: Can't add the access point number 1 to the list");
 			System.exit(-1);
 		}
-		if (!world.addAccessPoint(AccessPoint.MAX_SNR_ALLOCATION_ALGORITHM)) {
+		if (!world.addAccessPoint()) {
 			System.err.println("[ERROR] World: Can't add the access point number 2 to the list");
 			System.exit(-1);
 		}

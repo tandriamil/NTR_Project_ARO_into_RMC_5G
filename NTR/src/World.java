@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 /**
  * Class for the world in which we'll simulate the cells
@@ -8,10 +9,13 @@ public class World {
 
 	// Constants
 	public static final int MAX_TIME = 10000;
+	public static final int RR_ALLOCATION_ALGORITHM = 1;
+	public static final int MAX_SNR_ALLOCATION_ALGORITHM = 2;
 
 	// Attributes
 	private int time;
 	private int nbAccessPoints;
+	private Algorithm alg;
 	private List<AccessPoint> aps;
 	private List<Calculation> calculations;
 
@@ -55,14 +59,12 @@ public class World {
 	/**
 	 * Method to add access points
 	 *
-	 * @param ressourceAllocationAlgorithm The ressource allocation algorithm that we want to use here
-	 *
 	 * @return true if everything is right
 	 */
-	public boolean addAccessPoint(int ressourceAllocationAlgorithm) {
+	public boolean addAccessPoint() {
 
 		// Adds the access point
-		aps.add(new AccessPoint(this, ressourceAllocationAlgorithm));
+		aps.add(new AccessPoint(this));
 
 		// Increment the number of nbAccessPoints
 		++nbAccessPoints;
@@ -86,9 +88,41 @@ public class World {
 
 
 	/**
-	 * Clear the world
+	 * Get the ressource allocation used here
+	 *
+	 * @return The ressource allocation algorithm used here
 	 */
-	public void clear() {
+	public Algorithm getResAllocAlg() {
+		return alg;
+	}
+
+
+	/**
+	 * Clear the world
+	 *
+	 * @param ressourceAllocationAlgorithm The ressource allocation algorithm to use
+	 */
+	public void init(int ressourceAllocationAlgorithm) {
+
+		// In function of the ressource algorithm asked
+		switch (ressourceAllocationAlgorithm) {
+
+			// RoundRobin
+			case RR_ALLOCATION_ALGORITHM:
+				alg = new RoundRobin();
+				break;
+
+			// MaxSNR
+			case MAX_SNR_ALLOCATION_ALGORITHM:
+				alg = new MaxSNR();
+				break;
+
+			// Error
+			default:
+				System.err.println("[AccessPoint] Unknown ressource allocation algorithm");
+				System.exit(-1);
+				break;
+		}
 
 		// Remove the access points
 		aps.clear();
@@ -117,14 +151,17 @@ public class World {
 		for (AccessPoint ap : aps) {
 
 			// Reinitialize the state of the access point
-			ap.init(nbUsers);
+			ap.init(nbUsers, alg);
 
 			// Put their AP iterators into the list
-			urs.add(ap.getUR().iterator());
+			it_urs.add(ap.getUr().iterator());
 		}
 
 		// Loop on the time
 		while (time < MAX_TIME) {
+
+			// Create packets for each user
+			for (AccessPoint ap : aps) ap.userCreatePacket();
 
 			// Clear and manage each ur list
 			UR current;
@@ -140,8 +177,7 @@ public class World {
 					current.clearUR();
 
 					// Allocate it
-
-					// Check packet
+					current = alg.allocateSingleUR(current);
 				}
 			}
 
