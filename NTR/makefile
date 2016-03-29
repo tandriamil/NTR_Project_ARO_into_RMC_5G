@@ -10,5 +10,5 @@ clean: mrproper
 
 mrproper:
 	rm bin/*.class
-	rm *.csv
-	rm *.ods
+	#rm *.csv
+	#rm *.ods

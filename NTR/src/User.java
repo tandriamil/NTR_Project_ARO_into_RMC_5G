@@ -29,6 +29,10 @@ public class User {
 		}
 	}
 
+	public boolean isNear() {
+		return near;
+	}
+
 	public void createPacket() {
 		if(this.randomBoolean()){
 			Packet packet = new Packet(this, accessPoint.getTime());
@@ -83,6 +87,10 @@ public class User {
 
 	public int getId() {
 		return this.id;
+	}
+
+	public void interferenceDetected() {
+		debitCurrent = debitCurrent / 2;
 	}
 
 	private boolean randomBoolean() {

@@ -145,7 +145,9 @@ public class World {
 		time = 0;
 
 		// Get iterators on each URs
-		List<Iterator<UR>> it_urs = new ArrayList<Iterator<UR>>();
+		List<List<UR>> urs = new ArrayList<List<UR>>();
+		List<UR> to_compare = new ArrayList<UR>();
+		UR current;
 
 		// Initialize each access points
 		for (AccessPoint ap : aps) {
@@ -154,7 +156,7 @@ public class World {
 			ap.init(nbUsers, alg);
 
 			// Put their AP iterators into the list
-			it_urs.add(ap.getUr().iterator());
+			urs.add(ap.getUr());
 		}
 
 		// Loop on the time
@@ -164,20 +166,27 @@ public class World {
 			for (AccessPoint ap : aps) ap.userCreatePacket();
 
 			// Clear and manage each ur list
-			UR current;
-			for (Iterator<UR> ur : it_urs) {
+			for (int i = 0; i < AccessPoint.NB_UR; ++i) {
 
-				// For each ur in this list
-				while (ur.hasNext()) {
+				// For each UR list
+				for (List<UR> ur_list : urs) {
+					current = ur_list.get(i);
 
-					// Get it
-					current = ur.next();
-
-					// Clear it
 					current.clearUR();
 
-					// Allocate it
 					current = alg.allocateSingleUR(current);
+
+					to_compare.add(current);
+				}
+
+
+				interferenceBetweenAP(to_compare);
+
+
+				for (List<UR> ur_list : urs) {
+					current = ur_list.get(i);
+
+					current.getUser().checkPacket();
 				}
 			}
 
@@ -190,6 +199,29 @@ public class World {
 
 		// In the end, finalize the calculation
 		for (Calculation c : calculations) c.finalize(nbUsers);
+	}
+
+
+
+	private void interferenceBetweenAP(List<UR> urs) {
+
+		User current, comparison;
+		for (int i = 0; i < urs.size(); ++i) {
+
+			if (i > 0) {
+
+				current = urs.get(i).getUser();
+				comparison = urs.get(i - 1).getUser();
+
+				if ((current != null) && (comparison != null)) {
+
+					if ((!current.isNear()) && (!comparison.isNear())) {
+						current.interferenceDetected();
+						comparison.interferenceDetected();
+					}
+				}
+			}
+		}
 	}
 
 
