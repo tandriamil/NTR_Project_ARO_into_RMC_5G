@@ -13,7 +13,7 @@ import java.io.FileReader;
 /**
  * Class to compute the throughput in the networks
  */
-public class CalculThroughput implements Calculation{
+public class CalculThroughput implements Calculation {
 
 	// Parameters
 	private World world; 

@@ -1,46 +1,119 @@
-
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.io.File;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.FileReader;
 
-public class CalculPourcentageURUsed implements Calculation{
 
+/**
+ * Class to compute the whole percentage of UR used
+ */
+public class CalculPourcentageURUsed implements Calculation {
+
+	// Parameters
 	private World world; 
-    private int urUsed;
+	private Map<AccessPoint, Integer> urUsed;
 
+
+	/**
+	 * Constructor for this computation class
+	 *
+	 * @param worl The world on which we will do the computations
+	 */
 	public CalculPourcentageURUsed(World world){
+
+		// Put the world
 		this.world = world;
-        this.urUsed = 0;
+
+		// Get a list to put all the results
+		this.urUsed = new HashMap<AccessPoint, Integer>();
+
+		// Add all the access points of this world
+		for (AccessPoint ap : world.getAccessPoints()) {
+			this.urUsed.put(ap, 0);
+		}	
 	}
 
-	public World getWorld(){
-		return this.world;
+
+	/**
+	 * Function launched at every step to compute the datas
+	 */
+	public void execute() {
+
+		// Variables used here
+		User user;
+
+		// For each access point
+		for (AccessPoint ap : this.urUsed.keySet()) {
+
+			// Get the list of URs
+			for (UR ur_current : ap.getUr()) {
+
+				// Get the user put on each UR
+				user = ur_current.getUser();
+
+				// If there is one
+				if (user != null) this.urUsed.put(ap, this.urUsed.get(ap) + 1);
+			}
+
+			this.urUsed.put(ap, this.urUsed.get(ap) / AccessPoint.NB_UR);
+		}		
 	}
 
-    public int getUrUsed(){
-        return this.urUsed;
-    }
 
-	public void setUser(World w){
-		this.world = w;
+	/**
+	 * Method to finalize the computation
+	 *
+	 * @param nbUsers The number of users
+	 */
+	public void finalize(int nbUsers) {
+
+		// Parameters used here
+		int finalResult, accessPointId = 1;
+		File file = null;
+		BufferedWriter writer = null;
+		String nameFile;
+
+		// For each access point
+		for (AccessPoint ap : this.urUsed.keySet()) {
+
+			// Get the final value
+			finalResult = this.urUsed.get(ap) / World.MAX_TIME;
+
+			// The file writing
+			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_percentage_ur_used_of_cell_number_" + accessPointId + ".csv"; 
+
+			// Care, exceptions can occur here
+			try {
+
+				// Get a new pointer on the file
+				file = new File(nameFile);
+
+				// Try to create it if it doesn't exist
+				file.createNewFile();
+
+				// Write by appending the results
+				writer = new BufferedWriter(new FileWriter(nameFile, true));
+				writer.write(nbUsers + ";" + finalResult + "\n");
+
+			// All the exception handling
+			} catch(IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					writer.close();
+				} catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			// Increment the access point id
+			accessPointId++;
+		}
 	}
-
-	public void execute(){
-		AccessPoint a = world.getAccessPoint(0);
-        List<UR> ur = a.getUr();
-        Iterator<UR> it = ur.iterator();
-        int nbr_user = 0;
-
-        while(it.hasNext()){
-             UR ur_current = it.next();
-             User user = ur_current.getUser();
-             if (user != null){
-             	this.urUsed += 1;
-             }       
-        }
-
-        this.urUsed = this.urUsed / 128;			
-	}
-
-	public void finalize(int nbr_user){ 
-    }
 }
