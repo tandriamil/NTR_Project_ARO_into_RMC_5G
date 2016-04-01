@@ -70,20 +70,17 @@ public class World {
 		++nbAccessPoints;
 
 		// Check if the AP is really added to the list
-		return (getAccessPoint(nbAccessPoints-1) != null);
+		return (aps.get(nbAccessPoints-1) != null);
 	}
 
 
 	/**
 	 * Accesor for the access points
-	 * Begins to 0
 	 *
-	 * @param index The index of the wanted access point
-	 *
-	 * @return The access point associated to this index, null if none
+	 * @return The list of access points
 	 */
-	public AccessPoint getAccessPoint(int index) {
-		return aps.get(index);
+	public List<AccessPoint> getAccessPoints() {
+		return aps;
 	}
 
 
