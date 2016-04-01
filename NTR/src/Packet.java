@@ -1,56 +1,98 @@
-
+/**
+ * Packet class to represent the packet that users have to send
+ */
 public class Packet {
-    private int creation;
-    private int beginSend;
-    private int endSend;
-    private int nbBitsLeft;
-    private User user;
 
-    public Packet(User user, int time){
-    	this.creation = time;
-    	this.beginSend = 0;
-    	this.endSend = 0;
-    	this.nbBitsLeft = 100;
-    	this.user = user;
-    }
+	// Constants
+	public static final int PACKET_SIZE = 100;  // Initial packet size in bits
 
-    public int getCreation(){
-    	return this.creation;
-    }
+	// Arguments
+	private int creation;
+	private int beginSend;
+	private int endSend;
+	private int nbBitsLeft;
+	private User user;
 
-    public int getBeginSend(){
-    	return this.beginSend;
-    }
 
-    public int getEndSend(){
-    	return this.endSend;
-    }
+	/**
+	 * Constructor for the packets
+	 *
+	 * @param user The owner of this packet
+	 * @param time The current creation time of this packet
+	 */
+	public Packet(User user, int time) {
+		this.creation = time;
+		this.nbBitsLeft = PACKET_SIZE;
+		this.user = user;
+	}
 
-    public int getNbBitsLeft(){
-    	return this.nbBitsLeft;
-    }
 
-    public User getUser(){
-    	return this.user;
-    }
+	/**
+	 * Get the creation time of this packet
+	 *
+	 * @return The creation time
+	 */
+	public int getCreation() {
+		return this.creation;
+	}
 
-    public void setCreation(int c){
-    	this.creation = c;
-    }
 
-    public void setBeginSend(int b){
-    	this.beginSend = b;
-    }
+	/**
+	 * Get the beginning send time of this packet
+	 *
+	 * @return The creation time
+	 */
+	public int getBeginSend() {
+		return this.beginSend;
+	}
 
-    public void setEndSend(int e){
-   		this.endSend = e;
-    }
 
-    public void setNbBitsLeft(int nb){
-   		this.nbBitsLeft = nb;
-    }
+	/**
+	 * Get the ending send time of this packet
+	 *
+	 * @return The ending send time
+	 */
+	public int getEndSend(){
+		return this.endSend;
+	}
 
-    public void setUser(User u){
-   		this.user = u;
-    }
+
+	/**
+	 * Get the number of bits left to send
+	 *
+	 * @return The number of bits left to send
+	 */
+	public int getNbBitsLeft(){
+		return this.nbBitsLeft;
+	}
+
+
+	/**
+	 * Set the beginning send time of this packet
+	 *
+	 * @param time The creation time
+	 */
+	public void setBeginSend(int time) {
+		this.beginSend = time;
+	}
+
+
+	/**
+	 * Get the ending send time of this packet
+	 *
+	 * @param time The ending send time
+	 */
+	public void setEndSend(int time) {
+		this.endSend = time;
+	}
+
+
+	/**
+	 * Set the number of bits left to send
+	 *
+	 * @param nb The number of bits left to send
+	 */
+	public void setNbBitsLeft(int nb) {
+		this.nbBitsLeft = nb;
+	}
 }

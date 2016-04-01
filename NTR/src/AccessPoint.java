@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
+/**
+ * The AccessPoint class
+ */
 public class AccessPoint {
 
 	// Constants
@@ -11,7 +15,7 @@ public class AccessPoint {
 	private List<UR> ur;
 	private List<User> users;
 	private World world;
-	private int nb_Paket;
+	private int nbPacket;
 
 
 	/**
@@ -23,49 +27,43 @@ public class AccessPoint {
 		ur = new ArrayList<UR>();
 		users = new ArrayList<User>();
 		this.world = world;
-		this.nb_Paket = 0;
+		this.nbPacket = 0;
 	}
 
 
+	/**
+	 * Getter of the current time
+	 *
+	 * @return The int representation of the current time
+	 */
 	public int getTime() {
 		return world.getTime();
 	}
-    
-    public List<UR> getUr(){
-    	return this.ur;
-    }
+
+
 	/**
-	 * Ask all clients to send packet
+	 * Getter of the UR list
 	 */
-	public void userGeneratePacket() {
-		Iterator<User> it = users.iterator();
-		
-		while(it.hasNext()) {
-			it.next().createPacket();
-		}
+	public List<UR> getUr(){
+		return this.ur;
 	}
 
 
 	/**
 	 * Create packets for each user
+	 * This function randomly create packets, not always
 	 */
 	public void userCreatePacket() {
-
-		// Create a packet for each user
-		// This function randomly create packets, not always
-		for (User u : this.users) {
-			u.createPacket();
-		}
+		for (User u : this.users) u.createPacket();
 	}
 
 
 	/**
-	 * Display the URs
+	 * Display the URs state
 	 */
 	public void displayUR() {
-		for (UR u : this.ur) {
+		for (UR u : this.ur)
 			System.out.println("\t[" + u.getId() + "] = User n°" + ((u.getUser() != null) ? u.getUser().getId() : "NULL"));
-		}
 	}
 
 

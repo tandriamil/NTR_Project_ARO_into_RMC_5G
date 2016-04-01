@@ -1,5 +1,9 @@
 import java.util.List;
 
+
+/**
+ * Interface for the algorithm used here
+ */
 public interface Algorithm {
 
 	public List<UR> allocateUR(List<UR> urs);
