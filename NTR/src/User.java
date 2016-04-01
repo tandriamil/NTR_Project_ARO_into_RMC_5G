@@ -56,7 +56,7 @@ public class User {
 	}
 
 	/**
-	 * 
+	 * Check the packet : set the nb bits left, set packet end send, ...
 	 */
 	public void checkPacket() {
 		Packet packet = this.getCurrentPacket();
@@ -72,14 +72,25 @@ public class User {
 		}
 	}
 
+	/**
+	 * Get the first packet in buffer
+	 * @return Packet : the first packet
+	 */
 	public Packet getCurrentPacket() {
 		return buffer.peek();
 	}
 	
+	/**
+	 * Get the list of packet send
+	 * @return List<Packet> : the list of packet send
+	 */
  	public List<Packet> getPacket_send() {
 		return this.packet_send;
 	}
 
+	/**
+	 * Set packet terminated
+	 */
 	public void packetTerminated() {
 		getCurrentPacket().setEndSend(accessPoint.getTime());
 		this.packet_send.add(getCurrentPacket());

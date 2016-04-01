@@ -70,7 +70,7 @@ public class RoundRobin implements Algorithm {
 	 * @return UR : the ur allocated  
 	 */
 	public UR allocateSingleUR(UR ur) {
-		User user;
+		User user = null;
 
 		int cpt = 0;
 		
