@@ -8,7 +8,7 @@ import java.util.Iterator;
 public class World {
 
 	// Constants
-	public static final int MAX_TIME = 10000;
+	public static final int MAX_TIME = 100;
 	public static final int RR_ALLOCATION_ALGORITHM = 1;
 	public static final int MAX_SNR_ALLOCATION_ALGORITHM = 2;
 
@@ -30,9 +30,6 @@ public class World {
 		nbAccessPoints = 0;
 		aps = new ArrayList<AccessPoint>();
 		calculations = new ArrayList<Calculation>();
-
-		// Add the different calculations
-		calculations.add(new CalculThroughput(this));
 	}
 
 
@@ -124,6 +121,9 @@ public class World {
 		// Remove the access points
 		aps.clear();
 
+		// Remove the calculations
+		calculations.clear();
+
 		// Reinitialize the attributes
 		time = 0;
 		nbAccessPoints = 0;
@@ -140,6 +140,9 @@ public class World {
 
 		// Reinitialize the time
 		time = 0;
+
+		// Add the different calculations
+		calculations.add(new CalculThroughput(this));
 
 		// Get iterators on each URs
 		List<List<UR>> urs = new ArrayList<List<UR>>();

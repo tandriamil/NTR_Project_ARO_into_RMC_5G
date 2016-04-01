@@ -97,20 +97,17 @@ public class CalculThroughput implements Calculation{
 
 				// Write by appending the results
 				writer = new BufferedWriter(new FileWriter(nameFile, true));
-				writer.write(nbUsers + ";" + this.throughputMax.get(ap) + "\n");
+				writer.write(nbUsers + ";" + finalResult + "\n");
 
 			// All the exception handling
 			} catch(IOException e) {
 				e.printStackTrace();
 			} finally {
-
 				try {
 					writer.close();
-				}
-
-				catch(IOException e) {
+				} catch(IOException e) {
 					e.printStackTrace();
-				} 
+				}
 			}
 
 			// Increment the access point id
