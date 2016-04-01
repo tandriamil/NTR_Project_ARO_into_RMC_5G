@@ -8,7 +8,7 @@ import java.util.Iterator;
 public class World {
 
 	// Constants
-	public static final int MAX_TIME = 100;
+	public static final int MAX_TIME = 5000;
 	public static final int RR_ALLOCATION_ALGORITHM = 1;
 	public static final int MAX_SNR_ALLOCATION_ALGORITHM = 2;
 
