@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 
 public class User {
+
+	// Parameters
 	private int id;
 	private boolean near;
 	private AccessPoint accessPoint;
@@ -15,6 +17,12 @@ public class User {
 	private int debitMoy;
 	private int debitCurrent;
 	
+	/**
+	 * Constructor of user
+	 * @param id : the id of this user
+	 * @param accessPoint : the access point 
+	 * @param near : if user is near or not
+	 */
 	public User(int id, AccessPoint accessPoint, boolean near) {
 		this.id = id;
 		this.accessPoint = accessPoint;
@@ -29,10 +37,17 @@ public class User {
 		}
 	}
 
+	/**
+	 * Check if an user is near
+	 * @return boolean : true if he is near, else false
+	 */
 	public boolean isNear() {
 		return near;
 	}
 
+	/**
+	 * Create a packet (not at each call), and add it in the user buffer
+	 */
 	public void createPacket() {
 		if(this.randomBoolean()){
 			Packet packet = new Packet(this, accessPoint.getTime());
@@ -40,6 +55,9 @@ public class User {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void checkPacket() {
 		Packet packet = this.getCurrentPacket();
 		if(packet != null) {

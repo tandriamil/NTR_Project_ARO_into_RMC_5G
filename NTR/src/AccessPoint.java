@@ -11,7 +11,7 @@ public class AccessPoint {
 	// Constants
 	public static final int NB_UR = 128;
 	
-	// Prameters
+	// Parameters
 	private List<UR> ur;
 	private List<User> users;
 	private World world;

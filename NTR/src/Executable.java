@@ -4,8 +4,8 @@
 public class Executable {
 
 	// Constants
-	private static final int MAX_USERS = 256;
 	private static final int MIN_USERS = 2;
+	public static final int MAX_USERS = 192;
 
 
 	/**
@@ -25,7 +25,7 @@ public class Executable {
 
 		/* ######################### One access point - RR ######################### */
 		// Init the world
-		world.init(World.RR_ALLOCATION_ALGORITHM);
+		/*world.init(World.RR_ALLOCATION_ALGORITHM);
 
 		System.out.println("Tests with one access point and RR allocation algorithm");
 
@@ -40,13 +40,13 @@ public class Executable {
 
 			// Launch the simulation on the world with this number of users
 			world.bootstrap(nb_users);
-		}
+		}*/
 
 
 
 		/* ######################### One access point - MaxSNR ######################### */
 		// Init the world
-		/*world.init(World.MAX_SNR_ALLOCATION_ALGORITHM);
+		world.init(World.MAX_SNR_ALLOCATION_ALGORITHM);
 
 		System.out.println("Test with one access point and MaxSNR allocation algorithm");
 
@@ -61,7 +61,7 @@ public class Executable {
 
 			// Launch the simulation on the world with this number of users
 			world.bootstrap(nb_users);
-		}*/
+		}
 
 
 
