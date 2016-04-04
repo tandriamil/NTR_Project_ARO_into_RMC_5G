@@ -13,7 +13,7 @@ import java.io.FileReader;
 /**
  * Class to compute the whole percentage of UR used
  */
-public class CalculPourcentageURUsed implements Calculation {
+public class CalculPercentageURUsed implements Calculation {
 
 	// Parameters
 	private World world; 
@@ -25,7 +25,7 @@ public class CalculPourcentageURUsed implements Calculation {
 	 *
 	 * @param worl The world on which we will do the computations
 	 */
-	public CalculPourcentageURUsed(World world){
+	public CalculPercentageURUsed(World world){
 
 		// Put the world
 		this.world = world;

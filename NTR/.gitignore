@@ -3,6 +3,6 @@
 .settings
 
 bin/*.class
-**.csv
+**.csv*
 **.ods
 src/.*
