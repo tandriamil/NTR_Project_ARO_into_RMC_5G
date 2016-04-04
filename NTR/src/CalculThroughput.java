@@ -81,7 +81,7 @@ public class CalculThroughput implements Calculation {
 		for (AccessPoint ap : this.throughputMax.keySet()) {
 
 			// Get the final value
-			finalResult = this.throughputMax.get(ap) / World.MAX_TIME;
+			finalResult = this.throughputMax.get(ap) / (World.MAX_TIME * 2);
 
 			// The file writing
 			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_throughtput_of_cell_number_" + accessPointId + ".csv"; 
