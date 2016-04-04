@@ -11,4 +11,6 @@ run:
 clean: mrproper
 
 mrproper:
+	touch tmp.csv
+	mv -b --suffix=`date +%j%H%I%S` *.csv backup/.
 	rm bin/*.class
