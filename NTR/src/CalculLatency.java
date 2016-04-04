@@ -39,12 +39,13 @@ public class CalculLatency implements Calculation{
 	 */
 	public void execute(){
 
+		int nbUser, latency_current;
         User user;
 
      	for (AccessPoint ap : this.latency.keySet()){
      		
-     		int nbUser = 0;
-     		int latency_current = 0; 
+     		nbUser = 0;
+     		latency_current = 0; 
 
      		for(UR ur_current : ap.getUr()){
 
@@ -67,8 +68,10 @@ public class CalculLatency implements Calculation{
 					
 				}
 
-				latency_current = latency_current / nbUser;
-				this.latency.put(ap, this.latency.get(ap) + latency_current);		
+				if (nbUser > 0) {
+					latency_current = latency_current / nbUser;
+					this.latency.put(ap, this.latency.get(ap) + latency_current);
+				}  // Do nothing else
         	}
 	
      	}

@@ -4,8 +4,8 @@
 public class Executable {
 
 	// Constants
-	private static final int MIN_USERS = 16;
-	public static final int MAX_USERS = 65;
+	private static final int MIN_USERS = 2;
+	public static final int MAX_USERS = 193;
 
 
 	/**
