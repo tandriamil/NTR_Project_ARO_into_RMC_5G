@@ -17,7 +17,7 @@ public class CalculPercentageURUsed implements Calculation {
 
 	// Parameters
 	private World world; 
-	private Map<AccessPoint, Integer> urUsed;
+	private Map<AccessPoint, Double> urUsed;
 
 
 	/**
@@ -31,11 +31,11 @@ public class CalculPercentageURUsed implements Calculation {
 		this.world = world;
 
 		// Get a list to put all the results
-		this.urUsed = new HashMap<AccessPoint, Integer>();
+		this.urUsed = new HashMap<AccessPoint, Double>();
 
 		// Add all the access points of this world
 		for (AccessPoint ap : world.getAccessPoints()) {
-			this.urUsed.put(ap, 0);
+			this.urUsed.put(ap, 0.0);
 		}	
 	}
 
@@ -46,10 +46,14 @@ public class CalculPercentageURUsed implements Calculation {
 	public void execute() {
 
 		// Variables used here
+		int counter;
 		User user;
 
 		// For each access point
 		for (AccessPoint ap : this.urUsed.keySet()) {
+
+			// Initialize the counter
+			counter = 0;
 
 			// Get the list of URs
 			for (UR ur_current : ap.getUr()) {
@@ -58,11 +62,11 @@ public class CalculPercentageURUsed implements Calculation {
 				user = ur_current.getUser();
 
 				// If there is one
-				if (user != null) this.urUsed.put(ap, this.urUsed.get(ap) + 1);
+				if (user != null) counter++;
 			}
 
-			this.urUsed.put(ap, this.urUsed.get(ap) / AccessPoint.NB_UR);
-		}		
+			this.urUsed.put(ap, this.urUsed.get(ap) + (counter / AccessPoint.NB_UR));
+		}
 	}
 
 
@@ -83,7 +87,7 @@ public class CalculPercentageURUsed implements Calculation {
 		for (AccessPoint ap : this.urUsed.keySet()) {
 
 			// Get the final value
-			finalResult = this.urUsed.get(ap) / World.MAX_TIME;
+			finalResult = (int)((this.urUsed.get(ap) / World.MAX_TIME) * 100);
 
 			// The file writing
 			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_percentage_ur_used_of_cell_number_" + accessPointId + ".csv"; 

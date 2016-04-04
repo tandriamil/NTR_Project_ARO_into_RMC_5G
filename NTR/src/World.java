@@ -8,7 +8,7 @@ import java.util.Iterator;
 public class World {
 
 	// Constants
-	public static final int MAX_TIME = 5000;
+	public static final int MAX_TIME = 200;
 	public static final int RR_ALLOCATION_ALGORITHM = 1;
 	public static final int MAX_SNR_ALLOCATION_ALGORITHM = 2;
 
@@ -141,8 +141,13 @@ public class World {
 		// Reinitialize the time
 		time = 0;
 
+		// Clear the calculations array
+		calculations.clear();
+
 		// Add the different calculations
 		calculations.add(new CalculThroughput(this));
+		calculations.add(new CalculLatency(this));
+		calculations.add(new CalculPercentageURUsed(this));
 
 		// Get iterators on each URs
 		List<List<UR>> urs = new ArrayList<List<UR>>();

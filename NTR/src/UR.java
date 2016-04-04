@@ -15,7 +15,8 @@ public class UR {
 		this.accessPoint = accessPoint;
 		this.id = id;
 	}
-	
+
+
 	/**
 	 * Affect an user to this UR
 	 * @param user : the user to affect
@@ -23,6 +24,7 @@ public class UR {
 	public void affectURToUser(User user) {
 		this.user = user;
 	}
+
 
 	/**
 	 * Get the UR id
@@ -32,6 +34,7 @@ public class UR {
 		return this.id;
 	}
 
+
 	/**
 	 * Get the user affects to this UR
 	 * @return User : the user affects to this this UR
@@ -39,6 +42,7 @@ public class UR {
 	public User getUser() {
 		return this.user;
 	}
+
 
 	/**
 	 * Set the user affects to this UR to null

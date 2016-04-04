@@ -16,7 +16,8 @@ public class User {
 	private Deque<Packet> buffer;
 	private int debitMoy;
 	private int debitCurrent;
-	
+
+
 	/**
 	 * Constructor of user
 	 * @param id : the id of this user
@@ -37,6 +38,7 @@ public class User {
 		}
 	}
 
+
 	/**
 	 * Check if an user is near
 	 * @return boolean : true if he is near, else false
@@ -44,6 +46,7 @@ public class User {
 	public boolean isNear() {
 		return near;
 	}
+
 
 	/**
 	 * Create a packet (not at each call), and add it in the user buffer
@@ -54,6 +57,7 @@ public class User {
 			buffer.add(packet);
 		}
 	}
+
 
 	/**
 	 * Check the packet : set the nb bits left, set packet end send, ...
@@ -72,6 +76,7 @@ public class User {
 		}
 	}
 
+
 	/**
 	 * Get the first packet in buffer
 	 * @return Packet : the first packet
@@ -79,7 +84,8 @@ public class User {
 	public Packet getCurrentPacket() {
 		return buffer.peek();
 	}
-	
+
+
 	/**
 	 * Get the list of packet send
 	 * @return List<Packet> : the list of packet send
@@ -87,6 +93,7 @@ public class User {
  	public List<Packet> getPacket_send() {
 		return this.packet_send;
 	}
+
 
 	/**
 	 * Set packet terminated
@@ -97,30 +104,37 @@ public class User {
 		buffer.removeFirst();
 	}
 
+
 	public void removePacket(){
 		this.packet_send.remove(getCurrentPacket());
 	}
+
 
 	public void calculateDebit() {
 		debitCurrent = (int)(2*(Math.random()*((debitMoy*2)/2+1)));
 		//System.out.println("debitCurrent pour utilisateur " + near + " = " + debitCurrent);
 	}
 
+
 	public int getDebitCurrent(){
 		return this.debitCurrent;
 	}
+
 
 	public int getSNR() {
 		return this.debitCurrent;
 	}
 
+
 	public int getId() {
 		return this.id;
 	}
 
+
 	public void interferenceDetected() {
 		debitCurrent = debitCurrent / 2;
 	}
+
 
 	private boolean randomBoolean() {
 		return (Math.random() < 0.25);
