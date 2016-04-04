@@ -90,7 +90,7 @@ public class CalculLatency implements Calculation{
 		for (AccessPoint ap : this.latency.keySet()) {
 
 			// Get the final value
-			finalResult = this.latency.get(ap) / World.MAX_TIME;
+			finalResult = this.latency.get(ap) / (World.MAX_TIME * 2);
 
 			// The file writing
 			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_latency_of_cell_number_" + accessPointId + ".csv"; 
