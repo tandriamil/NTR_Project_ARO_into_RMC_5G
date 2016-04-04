@@ -34,18 +34,6 @@ public class CalculLatency implements Calculation{
 		}
 	}
 
-/*	public World getWorld(){
-		return this.world;
-	}
-
-    public int getLatency(){
-        return this.latency;
-    }
-
-	public void setUser(World w){
-		this.world = w;
-	}*/
-
 	/**
 	 * Function launched at every step to compute the datas
 	 */
@@ -74,7 +62,8 @@ public class CalculLatency implements Calculation{
              			latency_current += (packet_send.getEndSend() - packet_send.getBeginSend());
                		}
 
-             		latency_current = latency_current / packets.size();
+               		if (packets.size() > 0)
+             			latency_current = latency_current / packets.size();
 					
 				}
 
