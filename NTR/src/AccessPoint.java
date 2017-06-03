@@ -10,7 +10,7 @@ public class AccessPoint {
 
 	// Constants
 	public static final int NB_UR = 128;
-	
+
 	// Parameters
 	private List<UR> ur;
 	private List<User> users;

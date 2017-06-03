@@ -24,16 +24,16 @@ public class RoundRobin implements Algorithm {
 		User user;
 		int cpt = 0;
 		Iterator<UR> it_ur = urs.iterator();
-		
+
 		boolean found = false;
 
 		while(it_ur.hasNext()) {
 			calculateDebit();
-			
+
 			cpt = 0;
 			ur = it_ur.next();
 			user = null;
-			
+
 			found = false;
 
 			while(!found && cpt < 2) {
@@ -67,21 +67,21 @@ public class RoundRobin implements Algorithm {
 	/**
 	 * Allocate an user to an UR
 	 * @param ur : the ur to allocate
-	 * @return UR : the ur allocated  
+	 * @return UR : the ur allocated
 	 */
 	public UR allocateSingleUR(UR ur) {
 		User user = null;
 
 		int cpt = 0;
-		
+
 		boolean found = false;
 
 		// Caluclate new current debit for all users
 		calculateDebit();
-		
-		// While any user found if an user without empty buffer exists	
+
+		// While any user found if an user without empty buffer exists
 		while(!found && cpt < 2) {
-			// If there is a next user in the list 
+			// If there is a next user in the list
 			if(it.hasNext()) {
 				user = it.next();
 

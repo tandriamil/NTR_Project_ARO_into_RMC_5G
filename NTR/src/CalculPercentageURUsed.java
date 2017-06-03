@@ -16,7 +16,7 @@ import java.io.FileReader;
 public class CalculPercentageURUsed implements Calculation {
 
 	// Parameters
-	private World world; 
+	private World world;
 	private Map<AccessPoint, Double> urUsed;
 
 
@@ -36,7 +36,7 @@ public class CalculPercentageURUsed implements Calculation {
 		// Add all the access points of this world
 		for (AccessPoint ap : world.getAccessPoints()) {
 			this.urUsed.put(ap, 0.0);
-		}	
+		}
 	}
 
 
@@ -90,7 +90,7 @@ public class CalculPercentageURUsed implements Calculation {
 			finalResult = (int)((this.urUsed.get(ap) / World.MAX_TIME) * 100);
 
 			// The file writing
-			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_percentage_ur_used_of_cell_number_" + accessPointId + ".csv"; 
+			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_percentage_ur_used_of_cell_number_" + accessPointId + ".csv";
 
 			// Care, exceptions can occur here
 			try {

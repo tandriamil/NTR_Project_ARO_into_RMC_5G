@@ -16,7 +16,7 @@ import java.io.FileReader;
 public class CalculThroughput implements Calculation {
 
 	// Parameters
-	private World world; 
+	private World world;
 	private Map<AccessPoint, Integer> throughputMax;
 
 
@@ -84,7 +84,7 @@ public class CalculThroughput implements Calculation {
 			finalResult = this.throughputMax.get(ap) / (World.MAX_TIME * 2);
 
 			// The file writing
-			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_throughtput_of_cell_number_" + accessPointId + ".csv"; 
+			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_throughtput_of_cell_number_" + accessPointId + ".csv";
 
 			// Care, exceptions can occur here
 			try {

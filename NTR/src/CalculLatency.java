@@ -14,7 +14,7 @@ public class CalculLatency implements Calculation{
 	private World world;
 	private Map<AccessPoint, Integer> latency;
 
-   
+
 	/**
 	 * Constructor for this computation class
 	 *
@@ -43,15 +43,15 @@ public class CalculLatency implements Calculation{
         User user;
 
      	for (AccessPoint ap : this.latency.keySet()){
-     		
+
      		nbUser = 0;
-     		latency_current = 0; 
+     		latency_current = 0;
 
      		for(UR ur_current : ap.getUr()){
 
      			// Get the user put on each UR
 				user = ur_current.getUser();
-				
+
 				// If there is one
 				if (user != null){
 					nbUser++;
@@ -65,7 +65,7 @@ public class CalculLatency implements Calculation{
 
                		if (packets.size() > 0)
              			latency_current = latency_current / packets.size();
-					
+
 				}
 
 				if (nbUser > 0) {
@@ -73,13 +73,13 @@ public class CalculLatency implements Calculation{
 					this.latency.put(ap, this.latency.get(ap) + latency_current);
 				}  // Do nothing else
         	}
-	
+
      	}
-		
+
 	}
 
-	public void finalize(int nbUsers){ 
-	
+	public void finalize(int nbUsers){
+
 		// Parameters used here
 		int finalResult, accessPointId = 1;
 		File file = null;
@@ -93,7 +93,7 @@ public class CalculLatency implements Calculation{
 			finalResult = this.latency.get(ap) / (World.MAX_TIME * 2);
 
 			// The file writing
-			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_latency_of_cell_number_" + accessPointId + ".csv"; 
+			nameFile = world.getNbAccessPoints() + "_cell_" + world.getResAllocAlg().getName() + "_latency_of_cell_number_" + accessPointId + ".csv";
 
 			// Care, exceptions can occur here
 			try {

@@ -39,7 +39,7 @@ public class MaxSNR implements Algorithm {
 	/**
 	 * Allocate an user to an UR
 	 * @param ur : the ur to allocate
-	 * @return UR : the ur allocated  
+	 * @return UR : the ur allocated
 	 */
 	public UR allocateSingleUR(UR ur) {
 		// Get user with the max SNR
@@ -49,7 +49,7 @@ public class MaxSNR implements Algorithm {
 		if(user != null){
 			ur.affectURToUser(user);
 		}
-		
+
 		return ur;
 	}
 
@@ -64,7 +64,7 @@ public class MaxSNR implements Algorithm {
 		// While there is an user
 		while(it.hasNext()) {
 			user = it.next();
-			
+
 			// Set the current debit for all users
 			user.calculateDebit();
 

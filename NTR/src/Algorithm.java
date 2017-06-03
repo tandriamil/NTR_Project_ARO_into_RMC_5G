@@ -12,7 +12,7 @@ public interface Algorithm {
 	/**
 	 * Allocate an user to an UR
 	 * @param ur : the ur to allocate
-	 * @return UR : the ur allocated  
+	 * @return UR : the ur allocated
 	 */
 	public UR allocateSingleUR(UR ur);
 

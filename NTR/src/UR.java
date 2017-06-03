@@ -1,15 +1,15 @@
 
 public class UR {
-	
+
 	// Parameters
 	private AccessPoint accessPoint;
 	private User user;
 	private int id;
-	
+
 	/**
 	 * Constructor of UR
 	 * @param id : the id of this UR
-	 * @param accessPoint : the access point 
+	 * @param accessPoint : the access point
 	 */
 	public UR(int id, AccessPoint accessPoint) {
 		this.accessPoint = accessPoint;

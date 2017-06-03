@@ -21,7 +21,7 @@ public class User {
 	/**
 	 * Constructor of user
 	 * @param id : the id of this user
-	 * @param accessPoint : the access point 
+	 * @param accessPoint : the access point
 	 * @param near : if user is near or not
 	 */
 	public User(int id, AccessPoint accessPoint, boolean near) {
